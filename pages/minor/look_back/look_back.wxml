@@ -1,0 +1,22 @@
+<import src="../../common/template.wxml" />
+
+<nonetwork></nonetwork>
+
+<view class='back-content'>
+ <view class='child' wx:for="{{listInfo}}">
+   <image src='{{item.image}}'></image>
+   <view class='cont'>
+    <text class='fs30 pb20 show lh1 ellipsis'>{{item.channelName}}</text>
+    <text class='fs26 pb20 show lh1 c33 ellipsis'>{{item.title}}</text>
+    <text class='fs26 show lh1 c99 ellipsis'>{{item.dateStr}}  {{item.startTime}}-{{item.endTime}}</text>
+   </view>
+   <!-- <play play_type='1' _channelId="{{item.channelId}}"> -->
+   <play  play_type='0'  _assetId="{{item.playCode}}" _channelId="{{item.channelId}}" _title="{{item.title}}" _channelName="{{item.channelName}}" _startTime="{{item.date+''+item.startTime}}" _endTime="{{item.date+''+item.endTime}}" _code="{{item.playCode}}">
+    <button class='push-button'>推屏</button>
+   </play> 
+ </view>
+</view>
+
+<view>
+  <template is="loadings" data="{{loading,loadtxt}}" />
+</view>

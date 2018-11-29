@@ -1,0 +1,5 @@
+<view>
+  <view style='z-index:1' bindtap='_goplay'>
+    <slot></slot>
+  </view>
+</view>

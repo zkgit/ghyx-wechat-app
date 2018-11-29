@@ -1,0 +1,28 @@
+<import src="/common/template.wxml" />
+<nonetwork></nonetwork>
+<view class='detail'>
+  <view class='user-head'>
+    <view class='user-head-bg-box'>
+    </view>
+    <view class='user-head-info'>
+      <image class='user-head-logo' src='{{detail.imageSmall?detail.imageSmall:"/image/default_userImg.png "}}'></image>
+      <view>
+        <text class='user-head-name'>{{detail.actorName}}</text>
+      </view>
+    </view>
+  </view>
+  <template is="iti_tittle" data="{{iti_tittle:'个人介绍'}}" />
+
+  <view class="profile pl20 pr20 alic pt10">
+    <view class='pb20 c33 fs28 alil'>
+      <text class='lh24'>{{is_zhan?detail.intro:detail.shortIntro}}</text>
+    </view>
+  </view>
+
+  <!-- 相关推荐 -->
+  <view wx:if="{{list}}">
+    <template is="listtitle" data="{{url:'/pages/minor/star_more/star_more?starId='+options.starId+'&columnType='+options.columnType,_title:'相关推荐'}}" />
+    <template is="listSmalldb" data="{{_list:list}}" />
+
+  </view>
+</view>

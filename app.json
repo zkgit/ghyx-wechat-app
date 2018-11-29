@@ -1,0 +1,75 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/tvlive/tvlive",
+    "pages/indexdb/indexdb",
+    "pages/remote/remote",
+    "pages/mine/mine",
+    "pages/search/search",
+    "pages/vip/pay/pay",
+    "pages/vip/order/order",
+    "pages/vip/order_status/order_status",
+    "pages/minor/detail-db/detail-db",
+    "pages/minor/detail-zb/detail-zb",
+    "pages/minor/detail-zb-hk/detail-zb-hk",
+    "pages/minor/zblist/zblist",
+    "pages/minor/hotlist/hotlist",
+    "pages/minor/newlist/newlist",
+    "pages/minor/star/star",
+    "pages/minor/star_more/star_more",
+    "pages/minor/mine_history/mine_history",
+    "pages/minor/mine_collect/mine_collect",
+    "pages/minor/mine_order/mine_order",
+    "pages/minor/mine_point/mine_point",
+    "pages/minor/mine_buy/mine_buy",
+    "pages/minor/mine_password/mine_password",
+    "pages/minor/mine_device/mine_device",
+    "pages/minor/mine_feedback/mine_feedback",
+    "pages/minor/mine_orderlist/mine_orderlist",
+    "pages/minor/mine_tobemember/mine_tobemember",
+    "pages/minor/mine_messages/mine_messages",
+    "pages/minor/look_back/look_back",
+    "pages/resgister/resgister",
+    "pages/protocol/protocol",
+    "pages/login/login",
+    "pages/resetpwd/resetpwd"
+  ],
+  "window": {
+    "backgroundTextStyle": "black",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "云飞视",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "borderStyle": "black",
+    "color": "#737373",
+    "backgroundColor": "#ffffff",
+    "selectedColor": "#FF5F01",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "image/tab_icon1.png",
+        "selectedIconPath": "image/tab_icon1_1.png"
+      },
+      {
+        "pagePath": "pages/tvlive/tvlive",
+        "text": "电视",
+        "iconPath": "image/tab_icon2.png",
+        "selectedIconPath": "image/tab_icon2_2.png"
+      },
+      {
+        "pagePath": "pages/indexdb/indexdb",
+        "text": "片库",
+        "iconPath": "image/tab_icon3.png",
+        "selectedIconPath": "image/tab_icon3_3.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "image/tab_icon4.png",
+        "selectedIconPath": "image/tab_icon4_4.png"
+      }
+    ]
+  }
+}

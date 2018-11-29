@@ -1,0 +1,219 @@
+/* @import "../../common/template.wxss"  */
+
+/*滑动效果*/
+
+.stv-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+
+.stv-container .tab-bar {
+  position: relative;
+  font-size: 32rpx;
+  height: 78rpx;
+  /* line-height: 18rpx; */
+  white-space: nowrap;
+}
+
+.stv-container .tab-bar .tab {
+  align-items: center;
+  justify-content: center;
+  height: 78rpx;
+  display: inline-block;
+  border-bottom: 4rpx solid transparent;
+  margin: 0 30rpx;
+  box-sizing: content-box;
+}
+
+.stv-container .tab-bar .tab-active {
+   color: #ff510d;
+  /* border-bottom: 4rpx solid #ff510d;    */
+}
+.stv-container .tab-bar .tab-active .i{
+    position: absolute;
+    left: 50%;
+    margin-left: -24rpx;
+    width: 46rpx;
+    height: 4rpx;
+    display: block;
+    background: #ff510d;
+    border-radius: 6px;     
+    bottom: 0;
+}
+
+.stv-container .dateBox {
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  align-items: center;
+}
+
+.stv-container .dateBox .dateBar {
+  white-space: nowrap;
+}
+.stv-container .dateBox .dateTab {
+  width: 98rpx;
+  display: inline-block;  
+}
+
+.stv-container .tdCx {
+  border-radius: 6rpx;  
+}
+
+.stv-container .scroll-view {
+  position: relative;
+  width: 100%;
+  position: fixed;
+  top: 170rpx;
+  left: 0;
+  bottom: 0;
+}
+
+.stv-container .leftbar {
+  /* width: 180rpx; */
+   width: 235rpx;
+   border-right: 1rpx solid #f7f7f7;
+  position: fixed;
+  top: 170rpx;
+  left: 0;
+  bottom: 0;
+}
+
+.stv-container .leftbar_item {
+  height: 82rpx;
+  display: flex;
+}
+.stv-container .leftbar_item:nth-child(1) {
+  margin-top:30rpx; 
+}
+.stv-container .itemText{
+  border-box: border-box;
+  margin: 4rpx  10rpx 0;
+  padding-left:12rpx;
+  height: 60rpx;
+  /* width: 160rpx; */
+  width: 210rpx;
+  line-height: 60rpx;
+  border-radius: 6rpx;
+  box-sizing: border-box;
+}
+.stv-container .leftbar_item image {
+  width: 70rpx;
+}
+
+.stv-container .rightEpg {
+  position: fixed;
+  top: 170rpx;
+  /* left: 200rpx; */
+  left: 260rpx;
+  bottom: 0;
+  right: 0;
+  width: auto;
+}
+
+.stv-container .rightEpg .item {
+  height: 90rpx;
+  line-height: 90rpx;
+  border-bottom: 1rpx solid #eeeeee;
+  margin-right: 20rpx;
+}
+
+/* .stv-container .rightEpg .item:before {
+  position: absolute;
+  display: block;
+  content: "";
+  top: 40rpx;
+  bottom: 0;
+  left: 40rpx;
+  border-right: 2rpx solid #666;
+} */
+
+.stv-container .rightEpg .item .dot {
+  position: absolute;
+  top: 5rpx;
+  bottom: 0;
+  left: 26rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.stv-container .rightEpg .item .time {
+  /* left: 76rpx; */
+  /* top: 5rpx; */
+}
+
+.stv-container .rightEpg .item .time:before {
+  position: absolute;
+  display: block;
+  content: "";
+  top: 29rpx;
+  bottom: 29rpx;
+  left: 94rpx;
+  border-right: 2rpx solid #ddd;
+} 
+.stv-container .rightEpg .item .dt {
+  margin-left: 114rpx;
+  /* padding-top: 40rpx; */
+}
+.stv-container .rightEpg .item .dt .dl {
+  /* width: 327rpx; */
+  width: 280rpx;
+}
+.stv-container .rightEpg  .btn {
+  right: -20rpx;
+  top: 0rpx;
+  width: 98rpx;
+  text-align: left;
+  /* height: 100rpx; */
+}
+.r0{
+  right: 0rpx !important;
+}
+.pl0{padding-left: 0rpx}
+
+.form-btn{
+  text-align: left !important;
+  line-height: 90rpx;
+  height: 90rpx;
+  position: relative;
+}
+
+.stv-container .rightEpg  .btn image {
+  width: 32rpx;
+  height: 32rpx;
+  vertical-align: middle;
+}
+.stv-container .rightEpg  .btn text {
+  /* width: 40rpx; */
+  box-sizing: content-box;
+  padding: 4rpx;
+}
+.stv-container .scroll-view .scroll-view-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+}
+
+.stv-container .scroll-view .scroll-view-wrapper .one-scene {
+}
+
+.stv-container .scroll-view .scroll-view-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+}
+
+.stv-container .scroll-view .scroll-view-wrapper .one-scene {
+  height: 100%;
+}
+
+.one-scene text {
+  display: flex;
+  justify-content: center;
+  padding-top: 200rpx;
+}

@@ -1,0 +1,210 @@
+<import src="../../common/template.wxml" />
+
+<!-- <template is="loadings" data="{{loading,loadtxt}}" />  -->
+
+<!-- 没有网络时显示模块 -->
+<template is="nonetBlock" data="{{nonet:nonet}}" />
+
+<!-- <view class='no-network' wx:if='{{nonet}}'>
+ <image class='bg-img show' src='/image/nonet.png'></image>
+ <text class='fs28 c99 show alic t'>网络不可用，请检查您的网络设置</text>
+ <button class='alic cff btn fs28' >点击刷新</button>
+</view> -->
+<!-- <nonetwork></nonetwork> -->
+
+<view wx:if='{{!nonet}}'>
+  <!--浮动遥控器， _wid_pro遥控器大小，_left_pro遥控器距离右侧间距，_top_pro/_bottom_pro顶部和底部间距 -->
+    <partremote _wid_pro='55' _left_pro='10' _top_pro='10' _bottom_pro='10'></partremote>
+
+  <!-- tab标签 -->
+  <scroll-view class="tab-bar wp100" scroll-x>
+      <view wx:for="{{tabs}}" data-index="{{index}}" bindtap="changType" data-id="{{item.id}}" data-type='{{item.type}}' class="tab" style='width:33%'>
+      <view class="t {{tabType==item.id?'tab-active':''}}">{{item.title}}</view>
+      </view>
+    </scroll-view>
+<!-- <button open-type="getUserInfo" class='mt80' lang="zh_CN" >测试获取用户信息，授权弹窗</button> -->
+  <!--搜索框-->
+  <view class='mt80'>
+  <view class='pt36 pb36'>
+    <!-- <searchRank></searchRank> -->
+    <view class='searchRank'>
+    <navigator url="/pages/search/search">
+      <view class="form">
+        <view>
+          <icon type="search" size="15" color="#cccccc" catchtap="deleteTxt" />
+          <view class="cl">{{_r_values}}</view>
+        </view>
+      </view>
+    </navigator>
+    </view>
+  </view>
+  <!-- 轮播以前是要求三个模块分开，现在抽出统一使用一个,原来的注释，不删除 -->
+  <view class="banner-scroll">
+      <swiper indicator-dots="true" data-type='jx'  current='{{curIndex}}' indicator-color='' indicator-active-color class="Bannerswiper" autoplay="false" bindchange='changeTitle'>
+        <block wx:for="{{banners}}" wx:key="picUrl">
+          <swiper-item>
+            <view class="swiper-item">
+            <!-- 直播 -->
+              <navigator wx:if="{{item.bannerType=='live'}}" url="/pages/minor/detail-zb/detail-zb?channelId={{item.channelId}}">
+                <view class="pic">
+                  <image src="{{item.picUrl}}" mode="aspectFill" class="slide-image" />
+                </view>
+              </navigator>
+              <!-- 点播 -->
+              <navigator wx:if="{{item.bannerType=='demand'}}" url="/pages/minor/detail-db/detail-db?id={{item.vodId}}&columnType={{item.videoType}}">
+                <view class="pic">
+                  <image src="{{item.picUrl}}" mode="aspectFill" class="slide-image" />
+                </view>
+              </navigator>
+              <!-- 活动 -->
+              <navigator wx:if="{{item.bannerType=='activity'}}" url="{{item.url}}">
+                <view class="pic">
+                  <image src="{{item.picUrl}}" mode="aspectFill" class="slide-image" />
+                </view>
+              </navigator>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class='fs28 c22 pl20 pt28 lh1 ellipsis'>{{itemTitle}}</view>
+    </view>
+  <!--直播  -->
+    <view style="display:{{tabType=='1'?'block':'none'}}">
+      <!--海报轮播-->
+      <!-- <view class="banner-scroll">
+        <swiper indicator-dots="true" data-type='zb' current='{{curIndex}}' indicator-color='' indicator-active-color class="Bannerswiper" autoplay="false" bindchange='changeTitle'>
+          <block wx:for="{{banners_zb}}" wx:key="picUrl">
+            <swiper-item>
+              <view class="swiper-item">
+                <navigator url="/pages/minor/detail-db/detail-db?id={{item.id}}&columnType={{item.videoType}}">
+                  <view class="pic">
+                    <image src="{{item.picUrl}}" mode="aspectFill" class="slide-image" />
+                  </view>
+                </navigator>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+        <view class='fs28 c22 pl20 pt28 lh1 ellipsis'>{{itemTitle_zb}}</view>
+      </view> -->
+      <!-- 8个icon -->
+      <view class='change-tb-box'>
+        <view wx:for="{{tabListInfo}}" class='child' wx:key="{{item.picUrl}}">
+          <view bindtap='changeTab' data-acessTvName='{{item.channel_en}}'>
+            <image src="{{item.livecate_spare}}"></image>
+            <text>{{item.channel_ch}}</text>
+          </view>
+        </view>
+      </view>
+      <view wx:for="{{zbListInfo}}" wx:key="{{item.channel_en}}" wx:if="{{item.result.length>0}}">
+        <view bindtap='changeTab' data-acessTvName='{{item.channel_en}}' >
+          <template is="listtitle" data="{{_title:item.channel_ch,_plan:false,url:'../tvlive/tvlive',openType:'switchTab'}}"/>
+        </view> 
+        <template is="listzb" data="{{_list:item.result,freshFun:'zb_changeInfo',tag:item.channel_en}}" />
+      </view>
+      <!--浮动遥控器， _wid_pro遥控器大小，_left_pro遥控器距离右侧间距，_top_pro/_bottom_pro顶部和底部间距 -->
+      <!-- <partremote _wid_pro='55' _left_pro='10' _top_pro='10' _bottom_pro='10'></partremote> -->
+      <!--央视 -->
+      <!-- <template is="listtitle" data="{{_title:'央视',_plan:false,url:'../tvlive/tvlive?acessTvName=',openType:'switchTab'}}" />
+      <template is="listzb" data="{{_list:allMyVideo}}" /> -->
+      <!--北京  -->
+      <!-- <template is="listtitle" data="{{_title:'北京',_plan:false,url:'../tvlive/tvlive?acessTvName=',openType:'switchTab'}}" />
+      <template is="listzb" data="{{_list:allMyVideo}}" /> -->
+      <!--卫视  -->
+      <!-- <template is="listtitle" data="{{_title:'卫视',_plan:false,url:'../tvlive/tvlive?acessTvName=',openType:'switchTab'}}" />
+      <template is="listzb" data="{{_list:allMyVideo}}" /> -->
+      <!--影视  -->
+      <!-- <template is="listtitle" data="{{_title:'影视',_plan:false,url:'../tvlive/tvlive?acessTvName=',openType:'switchTab'}}" />
+      <template is="listzb" data="{{_list:allMyVideo}}" /> -->
+      <!--体育  -->
+      <!-- <template is="listtitle" data="{{_title:'体育',_plan:false,url:'../tvlive/tvlive?acessTvName=',openType:'switchTab'}}" />
+      <template is="listzb" data="{{_list:allMyVideo}}" /> -->
+      <!--少儿  -->
+      <!-- <template is="listtitle" data="{{_title:'少儿',_plan:false,url:'../tvlive/tvlive?acessTvName=',openType:'switchTab'}}" />
+      <template is="listzb" data="{{_list:allMyVideo}}" /> -->
+      <!--娱乐  -->
+      <!-- <template is="listtitle" data="{{_title:'娱乐',_plan:false,url:'../tvlive/tvlive?acessTvName=',openType:'switchTab'}}" />
+      <template is="listzb" data="{{_list:allMyVideo}}" /> -->
+    </view>
+
+  <!--精选  -->
+    <view style="display:{{tabType=='2'?'block':'none'}}">
+      <!--海报轮播-->
+      <!-- <view class="banner-scroll">
+        <swiper indicator-dots="true" data-type='jx'  current='{{curIndex}}' indicator-color='' indicator-active-color class="Bannerswiper" autoplay="false" bindchange='changeTitle'>
+          <block wx:for="{{banners_jx}}" wx:key="picUrl">
+            <swiper-item>
+              <view class="swiper-item">
+                <navigator url="{{item.url}}">
+                  <view class="pic">
+                    <image src="{{item.picUrl}}" mode="aspectFill" class="slide-image" />
+                  </view>
+                </navigator>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+        <view class='fs28 c22 pl20 pt28 lh1 ellipsis'>{{itemTitle_jx}}</view>
+      </view> -->
+      <!--浮动遥控器， _wid_pro遥控器大小，_left_pro遥控器距离右侧间距，_top_pro/_bottom_pro顶部和底部间距 -->
+      <!-- <partremote _wid_pro='55' _left_pro='10' _top_pro='10' _bottom_pro='10'></partremote> -->
+      <!--直播  -->
+      <template is="listtitle" data="{{_title:'直播',_plan:false,url:'',func:'toLive'}}" />
+      <template is="listzb" data="{{_list:jx_zbList,freshFun:'jx_changeInfo',tag:'zb'}}" />
+      <!--回看  -->
+      <template is="listtitle" data="{{_title:'回看',_plan:false,url:'../minor/look_back/look_back',openType:'navigate'}}" />
+      <template is="listhk" data="{{_list:jx_backList,freshFun:'jx_changeInfo',tag:'hk',hk:true}}" />
+      <!--点播  -->
+      <template is="listtitle" data="{{_title:'点播',_plan:false,url:'',func:'toDB'}}" />
+      <template is="listSmalldb" data="{{_list:jx_dbList,freshFun:'jx_changeInfo',tag:'db',freshBtn:true}}" />
+      <!-- 猜你喜欢 -->
+      <template is="listtitle" data="{{_title:'猜你喜欢',_plan:false,url:'',showMore:true}}" />
+      <template is="listSmalldb" data="{{_list:jx_likeList,freshFun:'jx_changeInfo',tag:'like',freshBtn:true}}" />
+    </view>
+
+  <!--点播  -->
+    <view style="display:{{tabType=='3'?'block':'none'}}">
+      <!--海报轮播-->
+      <!-- <view class="banner-scroll">
+        <swiper indicator-dots="true" indicator-color='' data-type='db' current='{{curIndex}}' indicator-active-color class="Bannerswiper" autoplay="false" bindchange='changeTitle'>
+          <block wx:for="{{banners_db}}" wx:key="picUrl">
+            <swiper-item>
+              <view class="swiper-item">
+                <navigator url="{{item.url}}">
+                  <view class="pic">
+                    <image src="{{item.picUrl}}" mode="aspectFill" class="slide-image" />
+                  </view>
+                </navigator>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+        <view class='fs28 c22 pl20 pt28 lh1 ellipsis'>{{itemTitle_db}}</view>
+      </view> -->
+      <view wx:for="{{dbListInfo}}" wx:key="unique">
+        <view wx:if="{{item.result.length>0?true:false}}">
+         <template is="listtitle" data="{{_title:item.channel_ch,_plan:false,url:'../indexdb/indexdb',openType:'switchTab'}}" />
+         <template is="listSmalldb" data="{{_list:item.result,iszb:false,tag:item.channel_en,freshBtn:true,freshFun:'db_changeList'}}" />
+        </view>  
+      </view>
+      <!-- <partremote _wid_pro='55' _left_pro='10' _top_pro='10' _bottom_pro='10'></partremote> -->
+      <!--抢先首映  -->
+      <!-- <template is="listtitle" data="{{_title:'抢先首映',_plan:false,url:'../indexdb/indexdb',openType:'switchTab'}}" />
+      <template is="listSmalldb" data="{{_list:allMyVideo,iszb:false}}" /> -->
+      <!--华语强档  -->
+      <!-- <template is="listtitle" data="{{_title:'华语强档',_plan:false,url:'../indexdb/indexdb',openType:'switchTab'}}" />
+      <template is="listSmalldb" data="{{_list:allMyVideo,iszb:false}}" /> -->
+      <!--海外专场  -->
+      <!-- <template is="listtitle" data="{{_title:'海外专场',_plan:false,url:'../indexdb/indexdb',openType:'switchTab'}}" />
+      <template is="listSmalldb" data="{{_list:allMyVideo,iszb:false}}" /> -->
+      <!--亿万票房  -->
+      <!-- <template is="listtitle" data="{{_title:'亿万票房',_plan:false,url:'../indexdb/indexdb',openType:'switchTab'}}" />
+      <template is="listSmalldb" data="{{_list:allMyVideo,iszb:false}}" /> -->
+      <!--剧集地  -->
+      <!-- <template is="listtitle" data="{{_title:'剧集地',_plan:false,url:'../indexdb/indexdb',openType:'switchTab'}}" />
+      <template is="listSmalldb" data="{{_list:allMyVideo,iszb:false}}" /> -->
+    </view>
+
+  </view>
+
+</view>

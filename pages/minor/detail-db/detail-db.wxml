@@ -1,0 +1,189 @@
+<import src="../../../style/dist/loadmore/index.wxml" />
+<import src="../../../style/dist/toast/index.wxml" />
+<import src="../../../style/dist/dialog/index.wxml" />
+<import src="/common/template.wxml" />
+
+<nonetwork></nonetwork>
+
+<!-- <view class='detail detail_db'>
+  <view class='detail_info pt40 pl20 pr20 pb20 bdb ovh'>
+    <view class='info_left wp40 mr20 fl'>
+      <image src="{{detail.image}}" binderror='imgerror' class="wp100" mode='widthFix'></image>
+    </view>
+    <view class='info_right'>
+      <view class='fs34 c00'>{{detail.title?detail.title:'暂无'}}</view>
+      <view class='tag pt10 pb10 cff'>
+        <text class='dsib mr10 fs26' wx:for="{{detail.tags}}" wx:if="{{item}}">{{item}}</text>
+      </view>
+      <view class='ellipsis fs26 c89'>
+        <text class='fs28 c22'>年份：</text>{{detail.year?detail.year:'暂无'}}</view>
+      <view class='des fs24 c89 lh24 ptr'>
+        <text class='fs28 c22'>简介：</text>{{is_shortdes?detail.shortdes:detail.description}}
+        <text class='{{is_shortdes?"":"pta r20 b0"}} c' bindtap='changedes'>{{is_shortdes?'展开':'收起'}}</text>
+      </view>
+    </view>
+  </view>
+  <view class='detail_tools bdb c33 alic'>
+    <view class='li wp50 fl ptr {{mystate.is_collect?"c":""}}' bindtap='collect'>
+      <image src='{{mystate.is_collect?"/image/collect_press.png":"/image/collect.png"}}' mode="	aspectFit"></image>
+      <text class='fs26'>{{mystate.is_collect?'已收藏':'收藏'}}</text>
+    </view>
+    <view class='li ptr wp50 fl {{is_share?"c":""}}'>
+      <button open-type="share">
+        <image src='{{is_share?"/image/share_press.png":"/image/share.png"}}' mode="	aspectFit"></image>
+        <text class='fs26'>{{is_share?'已分享':'分享'}}</text>
+      </button>
+    </view>
+  </view>
+</view> -->
+<detail_des _desc_data="{{detail}}" _db_price="{{db_price}}" wx:if="{{detail}}"></detail_des>
+
+<!-- 明星列表 -->
+<template is="detail_star" data="{{actorlist}}" wx:if="{{actorlist}}" />
+
+<view wx:if="{{options.columnType!='film'}}" class='tvdrama cf'>
+  <view wx:if="{{options.columnType=='tv'|| options.columnType == 'anime'}}">
+    <view class='zan-row fjbetween  dflex fcenter' bindtap='openPopup'>
+      <view class="zan-col zan-col-3">
+        <template is="iti_tittle" data="{{iti_tittle:'选集'}}" />
+      </view>
+      <view class="zan-col zan-col-9 zan-col-offset-10 fs26 c99 alir ">
+        更新至：{{detail.currentCount}}集/共{{detail.volumnCount}}集
+      </view>
+      <image class='zan-col zan-col-1  img' src='/image/more_fr.png' mode="widthFix"></image>
+    </view>
+    <scroll-view class="ml20 wp100 fs30" scroll-x>
+      <view class='fjbetween dlflex fcenter'>
+        <play play_type='2' _assetId="{{item.code}}" _providerId="{{item.cpCode}}" _id="{{item.id}}" wx:for="{{fadedmt}}"  data-current="{{index}}" _playNumber="{{item.volumnCount}}" _idForSave="{{detail.id}}" _productId="{{detail.productId}}" bindtap='switchTab' bind:myevent="toggleToast">
+          <view class="tab-bar {{index==currentTab?'cf5':''}}"> {{item.volumnCount}}</view>
+        </play>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view wx:if="{{(options.columnType=='arts'|| options.columnType == 'documentary')&&fadedmt}}">
+    <view class='zan-row fjbetween  dflex fcenter' bindtap='openPopup'>
+      <view class="zan-col zan-col-3  ">
+        <template is="iti_tittle" data="{{iti_tittle:'选集'}}" />
+      </view>
+      <view class="zan-col zan-col-9 zan-col-offset-10 fs26 c99 alir">
+        更新至：{{detail.currentCount}}期/共{{detail.volumnCount}}期
+      </view>
+      <image class='zan-col zan-col-1  img' src='/image/more_fr.png' mode="widthFix"></image>
+    </view>
+    <scroll-view class="ml20 wp100  " scroll-x>
+      <view class='dlflex fcenter fjcenter'>
+        <play play_type='2' _assetId="{{item.code}}" _providerId="{{item.cpCode}}" _id="{{item.id}}" wx:for="{{fadedmt}}" data-current="{{index}}" _playNumber="{{item.volumnCount}}" _idForSave="{{detail.id}}" _productId="{{detail.productId}}" bindtap='switchTab' bind:myevent="toggleToast">
+          <view class='tab-bar-arts dflex fcenter fjcenter '>
+            <view class="desc fs30 c33 {{index==currentTab?'cf5':''}}">
+              {{item.name}}
+            </view>
+          </view>
+        </play>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+<!--底部遮罩层  -->
+<view class="popup-example--bottom zan-popup zan-popup--bottom {{ showPopup ? 'zan-popup--show' : ''}}">
+  <view class="zan-popup__mask" catchtap="togglePopup"></view>
+  <view class="zan-popup__container" wx:if="showPopup">
+    <view class='pop-block'>
+      <view wx:if="{{options.columnType!='film'}}" class='cf'>
+        <view wx:if="{{options.columnType=='tv'|| options.columnType == 'anime'}}">
+          <view class='zan-row   dflex fcenter' bindtap='openPopup'>
+            <view class="zan-col zan-col-3">
+              <template is="iti_tittle" data="{{iti_tittle:'选集'}}" />
+            </view>
+            <view class="zan-col zan-col-9  fs26 c99  ">
+              ·更新至：{{detail.currentCount}}集/共{{detail.volumnCount}}集
+            </view>
+            <image class='zan-col zan-col-1 zan-col-offset-10 img' src='/image/close_icon.png' mode="widthFix" catchtap="togglePopup"></image>
+          </view>
+          <scroll-view class="wp100 fs30 scropare" scroll-y>
+            <view class='fstart dflex fcenter fwrap'>
+              <play play_type='2' _assetId="{{item.code}}" _providerId="{{item.cpCode}}" _id="{{item.id}}" wx:for="{{fadedmt}}" data-current="{{index}}" _playNumber="{{item.volumnCount}}" _idForSave="{{detail.id}}" _productId="{{detail.productId}}" bindtap='switchTab' bind:myevent="toggleToast">
+                <view class="tab-bar {{index==currentTab?'cf5':''}}">{{item.volumnCount}}</view>
+              </play>
+            </view>
+          </scroll-view>
+        </view>
+
+        <view wx:if="{{(options.columnType=='arts'|| options.columnType == 'documentary')&&fadedmt}}">
+          <view class='zan-row fjbetween  dflex fcenter' bindtap='openPopup'>
+            <view class="zan-col zan-col-3  ">
+              <template is="iti_tittle" data="{{iti_tittle:'选集'}}" />
+            </view>
+            <view class="zan-col zan-col-9  fs26 c99 ">
+              ·更新至：{{detail.currentCount}}期/共{{detail.volumnCount}}期
+            </view>
+            <image class='zan-col zan-col-1 zan-col-offset-10 img' src='/image/close_icon.png' mode="widthFix" catchtap="togglePopup"></image>
+          </view>
+          <scroll-view class="ml20 wp100  scropare" scroll-y>
+            <view class='fstart dflex fcenter fwrap'>
+              <play play_type='2' _assetId="{{item.code}}" _providerId="{{item.cpCode}}" _id="{{item.id}}" wx:for="{{fadedmt}}" wx:for="{{fadedmt}}" data-current="{{index}}"  _playNumber="{{item.volumnCount}}" _idForSave="{{detail.id}}" _productId="{{detail.productId}}" bindtap='switchTab'>
+                <view class='tab-bar-arts dflex fcenter fjcenter '>
+                  <view class="desc fs30 c33 {{index==currentTab?'cf5':''}}">
+                    {{item.name}}
+                  </view>
+                </view>
+              </play>
+            </view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<template is="zan-dialog" data="{{ zanDialog }}"></template>
+<template is="zan-toast" data="{{ zanToast }}"></template>
+
+
+
+<!-- 相关推荐 -->
+<view wx:if="{{tjlist}}">
+  <template is="iti_tittle" data="{{iti_tittle:'相关推荐'}}" />
+  <template is="listSmalldb" data="{{_list:tjlist,iszb:false}}" />
+</view>
+<!-- 返回首页 -->
+<template is="btn_backhome" data="{{ backhome }}"></template>
+
+<play wx:if="{{options.columnType=='film'}}" play_type='2' _assetId="{{fadedmt[0].code}}" _providerId="{{fadedmt[0].cpCode}}" _id="{{options.id}}" _playNumber="0" _idForSave="{{options.id}}" _productId="{{detail.productId}}" _price="{{fadedmt[0].price}}" bind:myevent="toggleToast">
+  <view class='tvplay cff fs30 z0'>推屏</view>
+</play>
+<!-- <view class='tvplay cff fs30 z0' bindtap='goplay'>推屏</view> -->
+
+<!-- <view class='dbmbplay cff fs30' bindtap='playmb'>手机观看</view> -->
+
+<!-- <template is="zan-dialog" data="{{ zanDialog }}"></template>
+<template is="zan-toast" data="{{ zanToast }}"></template> -->
+
+<!--遥控器  -->
+<partremote _wid_pro='55' _left_pro='10' _top_pro='10' _bottom_pro='10'></partremote>
+
+
+<view wx:if='{{showLoadMore}}' class='loadM'>
+  <template is="zan-loadmore" data="{{ loading: true }}" />
+</view>
+
+<!-- 订购弹窗 -->
+<view class='buy-list' wx:if="{{showOrderPop}}">
+    <view class='mask'></view>
+    <view class='content'> 
+    <view class='close-box' bindtap='cancelPop'><image class='' style='display:inline' src='/image/close_icon.png'></image></view>
+    <text class='fs32 t ellipsis'>购买{{detail.title}}</text>
+    <scroll-view class='cont' scroll-y>
+      <view wx:for="{{goodsList}}" class="item" data-index='{{index}}' bindtap='selectItem'>
+        <text class="fs32 show alic t1 {{selectIndex==index?'active':''}}">{{item.productName +' ('+ item.currentPrice +'元)' }}</text>
+        <text class='fs24 show alic c99'>{{item.subTitle?item.subTitle:'可观看全部付费影片'}}</text>
+      </view>
+    </scroll-view>
+    <view class='btn-box'>
+      <!-- <button class='btn fs32' bindtap='cancelPop'>取消</button> -->
+      <button class='btn fs32' bindtap='comfirmAction'>确定</button>
+    </view>
+    </view> 
+  </view>
+
+

@@ -1,0 +1,3 @@
+.probtn{background: linear-gradient(to right,rgba(51,51,51,0.6), rgba(51,51,51,0));width:35%;height:57rpx;line-height: 57rpx;margin:30rpx 0 28rpx;padding-left: 10rpx}
+.protocol{padding:0 43rpx;line-height: 38rpx;}
+.protocol .p{text-indent:2em;}

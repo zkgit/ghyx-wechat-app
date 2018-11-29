@@ -1,0 +1,75 @@
+<import src="../../../style/dist/dialog/index.wxml" />
+<import src="../../../style/dist/toast/index.wxml" />
+<import src="../../../common/template.wxml" />
+
+<nonetwork></nonetwork>
+
+<!-- 绑定图片背景及状态显示切换 -->
+<view class='img-block'>
+  <view class='bg psr'>
+    <image src='/image/bg_device_bind.png'></image>
+    <view class='psa bind-status' wx:if='{{!hasBind}}'>
+      <image src='/image/bind_faild.png'></image>
+      <text class='fs24 c71 show'>尚未绑定</text>
+    </view>
+    <view class='psa bind-status' wx:if='{{hasBind}}'>
+      <image src='/image/bind_success.png'></image>
+      <text class='fs24 c71 show'>绑定成功</text>
+    </view>
+  </view>
+</view>
+
+<!-- 未绑定状态显示 -->
+<view class='cont' wx:if='{{!hasBind}}'>
+  <text class='alic fs32 c66 pb20 show'>您尚未绑定任何机顶盒</text>
+  <text class='alic fs30 c99 show'>输入绑定码，轻松绑定账号</text>
+</view>
+<!-- 绑定成功状态显示 -->
+<view class='cont' wx:if='{{hasBind}}'>
+  <text class='alic fs32 c66 pb20 show'>您已绑定:{{deviceNo}}</text>
+  <text class='alic fs30 c99 show'></text>
+</view>
+
+<!-- 按钮 -->
+<view>
+  <button bindtap='toggleBottomPopup' class='btn fs36'>{{!hasBind?'添加绑定':'解除绑定'}}</button>
+</view>
+
+<!--底部遮罩层  -->
+<!-- <view class="popup-example--bottom zan-popup zan-popup--bottom {{ showdevice ? 'zan-popup--show' : ''}}">
+    <view class="zan-popup__mask" catchtap="toggleBottomPopup"></view>
+    <view class="zan-popup__container" wx:if="showPopup">
+    <view class='pop-block'>
+      <view class='title psr'>
+      <image class='close' src='../../../image/close_icon.png' catchtap="toggleBottomPopup"></image>
+      </view>
+      <view class='cont'>
+        <input class='put' placeholder='请输入绑定码' placeholder-class='caa fs36 alic'></input>
+        <button class='btn fs36 alic'>确认绑定</button>
+        <text class='fs26 c33 show lh1 t1'>↓如何获取绑定码↓</text>
+        <text class='fs26 c88 show t2'>您必须为歌华有线电视用户：请按手机遥控器主页键点击“生活”栏目-“云飞视”，在二维码下方获取绑定码。</text>
+      </view>
+    </view>
+  </view>
+</view> -->
+
+
+<view class=' {{showdevice?"zan-dialog--show":"dsn"}} '>
+    <view class='zan-dialog--mask z10' bindtap='hidedevice'></view>
+    <view class='device_content bgcff'>
+      <image src='/image/close_icon.png' class='close' bindtap='hidedevice'></image>
+      <view class='device-content-header'>
+        <form bindsubmit='deviceconfrim'>
+          <input placeholder='请输入绑定码' type='number' name='code' placeholder-class='fs34 c88 alic' class='h88 lh88 alic'></input>
+          <button class='zan-btn cff regbtn mt44' form-type='submit'>确认绑定</button>
+        </form>
+        <view class='c33 fs30 pb10 mt20'>↓如何获取绑定码↓</view>
+        <view class='c88 fs28'>您必须为歌华有线电视用户：请按手机遥控器主页键点击“生活”栏目-“云飞视”，在二维码下方获取绑定码。</view>
+      </view>
+    </view>
+  </view>
+
+<!-- <template is="devicebox" data="{{_showdevice:showdevice}}"></template> -->
+<template is="zan-dialog" data="{{ zanDialog }}"></template>
+<template is="zan-toast" data="{{ zanToast }}"></template>
+

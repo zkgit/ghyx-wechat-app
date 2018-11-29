@@ -1,0 +1,97 @@
+<import src="../../style/dist/dialog/index.wxml" />
+<import src="../../common/template.wxml" />
+<view class='wp100 ovh bsz remote'>
+  <!-- <view class='fs30 alic mt40 flex remote-bind'>
+    <view class='zan-icon zan-icon-fail  alic mr10'></view>
+    <text>{{boxId?'已绑定：'+boxId:'当前未绑定设备'}}</text>
+    <view class='zan-icon zan-icon-arrow fs20 ml10'></view>
+  </view> -->
+  <view class='fs30 alic mt40 flex remote-bind' wx:if="{{boxId}}">
+    <view class='zan-icon zan-icon-fail  alic mr10'></view>
+    <text>{{'已绑定：'+boxId}}</text>
+    <view class='zan-icon zan-icon-arrow fs20 ml10'></view>
+  </view>
+  <view class='fs30 alic mt40 flex remote-bind'  wx:if="{{!boxId}}">
+    <view style='width:50%;margin:0 auto' bindtap='checkFun'>
+      <view class='zan-icon zan-icon-fail  alic mr10'></view>
+      <text>当前未绑定设备</text>
+      <view class='zan-icon zan-icon-arrow fs20 ml10'></view>
+    </view>
+  </view>
+
+  <view class='svg ptr ovh bsz' hidden='{{keynum!="default"}}'>
+    <image src='{{svgbg}}' class='svgbg'></image>
+    <view class='cover svg-up' bindtouchstart="svgpress" bindtouchmove="svgmove" bindtouchend="svgend" data-keycode='82'></view>
+    <view class='cover svg-right' bindtouchstart="svgpress" bindtouchmove="svgmove" bindtouchend="svgend" data-keycode='79'></view>
+    <view class='cover svg-bottom' bindtouchstart="svgpress" bindtouchmove="svgmove" bindtouchend="svgend" data-keycode='81'></view>
+    <view class='cover svg-left' bindtouchstart="svgpress" bindtouchmove="svgmove" bindtouchend="svgend" data-keycode='80'></view>
+    <view class='svg-ok' hover-class='svg-ok-active' bindtouchstart="svgpress" bindtouchmove="svgmove" bindtouchend="svgend" data-keycode='40'>
+    </view>
+  </view>
+
+  <view class='num ovh fs32' hidden='{{keynum!="num"}}'>
+    <view class='li' bindtouchstart="svgpress" data-keycode='30'>1</view>
+    <view class='li' bindtouchstart="svgpress" data-keycode='31'>2</view>
+    <view class='li' bindtouchstart="svgpress" data-keycode='32'>3</view>
+    <view class='li' bindtouchstart="svgpress" data-keycode='33'>4</view>
+    <view class='li' bindtouchstart="svgpress" data-keycode='34'>5</view>
+    <view class='li' bindtouchstart="svgpress" data-keycode='35'>6</view>
+    <view class='li' bindtouchstart="svgpress" data-keycode='36'>7</view>
+    <view class='li' bindtouchstart="svgpress" data-keycode='37'>8</view>
+    <view class='li' bindtouchstart="svgpress" data-keycode='38'>9</view>
+    <view class='li' bindtouchstart="svgpress" data-keycode=''>#</view>
+    <view class='li' bindtouchstart="svgpress" data-keycode='39'>0</view>
+    <view class='li item' hover-class='itemactive' bindtouchstart="svgpress" data-keycode=''>
+      <image src='/image/remote/remote_num_back.png' class='img1'></image>
+      <image src='/image/remote/remote_num_backpress.png' class='img2'></image>
+    </view>
+  </view>
+  <view class='mt90 ml40 mr40 ptr dflex fcenter fjcenter'>
+    <!--首页  -->
+    <view class='item pta l0 t0' hover-class='itemactive' bindtouchstart="svgpress" data-keycode='180'>
+      <image src='/image/remote/remote_home.png' class='img1'></image>
+      <image src='/image/remote/remote_home_press.png' class='img2'></image>
+    </view>
+    <view class='key_vol ptr'>
+      <image src='{{keyvolbg}}' class='pta l0 t0' style='z-index:-1;'></image>
+      <!--音量减  -->
+      <view class='item fl' hover-class='itemactive' bindtouchstart="svgpress" bindtouchend="svgend" data-keycode='243'></view>
+      <!-- 音量静音 -->
+      <view class='item fl vol' hover-class='itemactive' bindtouchstart="svgpress" bindtouchend="svgend" data-keycode='244'></view>
+      <!--音量加  -->
+      <view class='item fl' hover-class='itemactive' bindtouchstart="svgpress" bindtouchend="svgend" data-keycode='242'>
+      </view>
+    </view>
+    <view class='item pta r0 t0' hover-class='itemactive' bindtouchstart="svgpress" data-keycode='41'>
+      <image src='/image/remote/remote_return.png' class='img1'></image>
+      <image src='/image/remote/remote_return_press.png' class='img2'></image>
+    </view>
+  </view>
+  <view class='mt70 ovh  ptr' style='display:none'>
+    <!--菜单  -->
+    <view class='item  pta l0 t0' hover-class='itemactive' bindtouchstart="svgpress" data-keycode='36'>
+      <image src='http://miniapps.kanketv.com/image/apptest/re_menu.png' class='img1' style='height:42rpx;'></image>
+      <image src='http://miniapps.kanketv.com/image/apptest/re_menu_press.png' style='height:42rpx;' class='img2'></image>
+    </view>
+    <view class='key_num ovh fs28 c99'>
+      <view class='wp50 {{keynum=="default"?"active":""}} fl alic' bindtap='shownum' data-key='default'>按键</view>
+      <view class='wp50 alic fl {{keynum=="num"?"active":""}}' bindtap='shownum' data-key='num'>数字</view>
+    </view>
+    <!--返回  -->
+    <view class='item pta r0 t0' hover-class='itemactive' bindtouchstart="svgpress" data-keycode='640'>
+      <image src='http://miniapps.kanketv.com/image/apptest/re_back.png' class='img1' style='height:42rpx;'></image>
+      <image src='http://miniapps.kanketv.com/image/apptest/re_back_press.png' class='img2' style='height:42rpx;'></image>
+    </view>
+  </view>
+  <view class='key_num fs32 dflex fwb'>
+    <view class='wp50 alic {{keynum=="default"?"active c":""}}' bindtap='shownum' data-key='default'>
+      <text>按键</text>
+    </view>
+    <view class='wp50 alic {{keynum=="num"?"active c":""}}' bindtap='shownum' data-key='num'>
+      <text>数字</text>
+    </view>
+  </view>
+</view>
+
+<template is="devicebox" data="{{_showdevice:showdevice}}"></template>
+<template is="zan-dialog" data="{{ zanDialog }}"></template>

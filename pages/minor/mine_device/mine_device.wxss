@@ -1,0 +1,18 @@
+.btn{width: 670rpx;height: 88rpx;margin-top: 216rpx;border-radius: 10rpx;color: #fff;text-align: center;background: linear-gradient(to right, rgb(255,81,13) , rgb(255,112,0));
+}
+
+.img-block .bg{width:546rpx;height:252rpx;margin:198rpx 0 146rpx 110rpx;}
+.img-block .bg image{width:100%;height:100%;}
+.img-block .bg .bind-status{right:80rpx;top:64rpx;}
+.img-block .bg .bind-status image{width:58rpx;height:65rpx;margin-left:18rpx;}
+
+/* 底部遮罩 */
+.pop-block{height:920rpx;width:100%;background-color:#fff}
+.pop-block .title{height: 90rpx;width: 100%}
+.pop-block .title .close{width:24rpx;height:24rpx;float:right;margin-right:48rpx;margin-top:30rpx;}
+.pop-block .cont{width: 600rpx;margin: 0 auto}
+.pop-block .cont .put{height: 88rpx;border-radius: 6rpx;border: 1rpx solid #ff510d;padding-left: 150rpx;padding-right: 150rpx}
+.pop-block .cont .btn{width: 100%;height: 88rpx;line-height: 88rpx;border-radius: 6rpx;background: linear-gradient(to right,rgb(255,81,13),rgb(255,112,0));margin:44rpx 0 40rpx 0;color: rgba(255, 255, 255, 0.6)}
+
+.pop-block .cont .t1{font-family: PingFang-SC-Bold}
+.pop-block .cont .t2{padding: 18rpx 0 20rpx 0;}

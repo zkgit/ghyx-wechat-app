@@ -1,0 +1,324 @@
+
+/*滑动一级导航*/
+/*！！！！！！！！！！！！添加样式请备注！！！！！！！！！！！！！！！！！！*/
+.scroll-view_H {
+  white-space: nowrap;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.nav-name {
+  display: inline-block;
+  margin: 0 5px;
+  font-size: 16px;
+  color: #2b2e33;
+  border-bottom: 2px solid transparent;
+  padding: 10px;
+}
+
+.nav-hover {
+  color: #f06000;
+  border-bottom: 2px solid #f06000;
+}
+
+/*列表页面  */
+
+.listNews {
+  margin: 0;
+  /* border-bottom: 1rpx solid #e6e6e6; */
+}
+
+/* .listNews:after {
+  content: "";
+  flex: auto;
+} */
+
+.listNews .listTitle {
+  display: flex;
+  height: 100rpx;
+  font-size: 32rpx;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.listNews .listTitle .listText {
+  display: flex;
+  align-items: flex-end;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin-left: 20rpx;
+}
+
+.listNews .listTitle .listText:before {
+  /* content:'';
+    width:2px;
+    background:#f06000;
+    border-radius: 2px;
+    display:inline-block;
+    margin: 2px 4px 0 0;
+    height:14px;
+    align-self:center; */
+}
+
+.listNews .listTitle .listMore {
+  display: flex;
+  align-items: flex-end;
+  height: 100rpx;
+  line-height: 90rpx;
+  margin-left: 19rpx;
+}
+
+.listNews .listTitle .text {
+  font-size: 32rpx;
+  color: rgb(34,34,34);
+  font-weight:bold;
+}
+
+.listNews .listTitle .more {
+  color: #666;
+  font-size: 26rpx;
+}
+.listNews .listTitle .re-more {
+  color: #666;
+  font-size: 26rpx;
+  margin-right: 20rpx;
+}
+.listNews .listTitle .img{
+  width:18rpx;
+  height:92rpx;
+  margin:0 25rpx 0 10rpx;
+
+}
+.listNews .listTitle .refresh{
+  width:26rpx;
+  height:92rpx;
+  margin-right:10rpx;
+
+}
+
+.changePage{
+  width: 710rpx;height: 88rpx;display: flex;background-color: #f3f3f3;margin:0 auto;margin-bottom:30rpx;border-radius: 8rpx
+}
+.changePage .img{
+  width:13rpx;
+  height:92rpx;
+  margin:0 20rpx 0 10rpx;
+}
+.changePage .refresh{
+  width:26rpx;
+  height:92rpx;
+  margin-right:10rpx;
+  margin-left: 40%
+}
+.changePage .t{
+  color: #666;
+  font-size: 24rpx;
+  margin-right: 20rpx;
+  line-height:3.8;
+}
+
+.listNews .list-flex {
+  display: flex;
+  justify-content: initial;
+  width: 98%;
+  flex-wrap: wrap;
+  margin: 0 auto
+}
+
+.listNews .listBox {
+  width: 230rpx;
+  /* margin-top:8px; */
+  height: 392rpx;
+  /* margin-right:2rpx; */
+  margin-left: 10rpx;
+  margin-bottom: 28rpx
+}
+
+.listNews .listBox .boxPic {
+  height: 306rpx;
+  position: relative;
+}
+.listNews .listBox .poster{
+  position: absolute;
+  right: 0;
+  height: 34rpx;
+  border-radius: 0 6rpx 0 6rpx;
+  color: #fff;
+  font-size:22rpx;
+  padding:5rpx 8rpx;
+}
+/* 热播 */
+.listNews .listBox .rb{
+  background-color: #ff510d
+}
+/* 电视尊享 */
+.listNews .listBox .zx{
+   background-color: #ff5c5c
+}
+/* 预告 */
+.listNews .listBox .yg{
+   background-color: #0da6ff
+}
+/* 全网首播 */
+.listNews .listBox .sb{
+   background-color: #1fcc4c
+}
+
+.listNews .listBox .poster-hk{
+  position: absolute;
+  right: 0;
+  height: 34rpx;
+  color: #fff;
+  font-size:24rpx;
+  padding:5rpx 8rpx;
+  bottom: 0;
+}
+
+/* 回看时间*/
+.listNews .listBox .hk{
+   /* background-color: #1fcc4c */
+}
+
+
+.listNews .listBox image {
+  width: 230rpx;
+  height: 306rpx;
+  border-radius:8rpx;
+}
+
+.listNews .listBox .boxPic .time {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 3px 8px;
+  font-size: 12px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.listNews .listBox .boxPic .icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 37px;
+  height: 37px;
+}
+
+
+.listNews .listBox .boxTitle1, .listNews .listBox .boxTitle2 {
+  overflow: hidden;
+  width: 100%;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.listNews .listBox .boxTitle1 {
+  height: 85rpx;
+  line-height: 65rpx;
+  font-size: 26rpx;
+  color: #222;
+}
+.listNews .listBox .boxTitle1 text{
+   margin-left: 20rpx; 
+}
+.listNews .listBox .boxTitle1 view{
+  overflow: hidden;
+  width: 100%;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.listNews .listBox .boxTitle1 .t1{
+  font-size: 28rpx;height:28rpx;line-height:1;margin-top: 18rpx;
+}
+.listNews .listBox .boxTitle1 .t2{
+  color: rgb(153,153,153);font-size: 24rpx;height:24rpx;line-height:1;margin-top:17rpx;
+}
+/* .listNews .listBox .boxTitle2 {
+  height: 16px;
+  line-height: 16px;
+  font-size: 12px;
+  color: #999;
+} */
+.listNews .listBox .boxTitle2 .t{
+  height: 24px;
+  font-size: 28rpx;
+  display:block;
+  margin-top:10rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+._line{
+  height: 1rpx;
+  width: 730rpx;
+  margin-left: 20rpx;
+  border-bottom:1rpx solid #e6e6e6;
+}
+
+/*注册，登录*/
+.resgister{padding: 30rpx 56rpx 0;}
+.resgister .login{padding:20rpx 0 20rpx 20rpx; }
+.resgister .reg_title{font-size: 48rpx;padding:48rpx 0 55rpx;}
+.resgister .reg_title image{width:38rpx;margin-right: 14rpx;}
+.resgister .placehold{font-size:36rpx;color:#ccc;}
+.resgister .inputbox .item{height:148rpx;padding-top: 28rpx;line-height:120rpx;box-sizing: border-box;}
+.resgister .iconimg{padding:0 12rpx 0 20rpx;}
+.regbtn{background: linear-gradient(to right, #ff510d, #ff7000);font-size: 36rpx;border-radius: 3px;}
+.resgister .phonehis{top:170rpx;left:0;z-index:10;box-shadow:0 0 6px rgba(68,68,68,0.1);padding:0 19rpx;overflow: scroll}
+.resgister .phonehis .itemhis{height:84rpx;line-height: 84rpx;border-bottom:1px solid #eee;}
+.resgister .phonehis .itemhis:last-child{border-bottom:none;}
+
+
+
+/* 明星列表 */
+
+.actorlist .actor {
+  margin-right: 30rpx;
+  width: 110rpx;
+  display: inline-block;
+}
+
+.actorlist .actor image {
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50%;
+}
+
+.actorlist .actor .director {
+  height: 32rpx;
+  width: 39rpx;
+  top: 75rpx; 
+  left: 50%;
+  transform: translate(-50%,0);
+}
+/* 一键返回首页 */
+.btn_backhome {
+  position: fixed;
+  background: #fff;
+  color: #ff510d;
+  opacity: 0.9;
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+  bottom: 140rpx;
+  right: 40rpx;
+  text-align: center;
+  box-shadow: 0px 0px 20px 0px rgba(90, 87, 87, 0.7);
+}
+
+
+/*绑定设备提示框  */
+.device_content{position: fixed;left:30rpx;right:30rpx;top:20%;padding-top:70rpx;height:440rpx;border-radius:3px; z-index:11;}
+.device_content .close{position: absolute;right:10rpx;top:10rpx;padding:14rpx;width:60rpx;height:60rpx;box-sizing: border-box}
+.device_content .device-content-header{padding: 0 75rpx;}
+.device_content .device-content-header input{border:1px solid #ff510d;border-radius: 3px;}
+
+/* 无网络时的模块样式 */
+.no-network{width:420rpx;height:230rpx;margin:424rpx auto;}
+.no-network .bg-img{width: 100rpx;height: 70rpx;margin: 0 auto}
+.no-network .t{margin: 48rpx 0 28rpx 0;line-height: 28rpx}
+.no-network .btn{height:56rpx;width:160rpx;border-radius:16rpx;background:linear-gradient(to left, rgb(255,81,13) , rgb(255,112,0));padding-left:10px;line-height:55rpx;}
+
+/* 订购组件 */

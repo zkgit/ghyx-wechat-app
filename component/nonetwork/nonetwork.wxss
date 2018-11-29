@@ -1,0 +1,10 @@
+/* 无网络时的模块样式 */
+.page{background-color: #fff;position:fixed;width:100%;z-index:99999;height:100%;}
+.no-network{width:420rpx;height:230rpx;margin:424rpx auto;}
+.no-network .bg-img{width: 100rpx;height: 70rpx;margin: 0 auto;display: block}
+.no-network .t{margin: 48rpx 0 28rpx 0;line-height: 28rpx;font-size: 28rpx; color: #c999; display: block; text-align: center }
+.no-network .btn{height:56rpx;width:160rpx;border-radius:16rpx;background:linear-gradient(to left, rgb(255,81,13) , rgb(255,112,0));padding-left:10px;line-height:55rpx;font-size: 28rpx;color: #fff;display: block}
+
+.havenet{position:fixed;width:100%;z-index:99999;height:100%;}
+
+/* .havenet{width:100%;z-index:99999;height:100%;} */

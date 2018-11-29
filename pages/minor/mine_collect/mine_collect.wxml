@@ -1,0 +1,105 @@
+<import src="../../../style/dist/loadmore/index.wxml" />
+<import src="../../../style/dist/tab/index.wxml" />
+<import src="../../../style/dist/dialog/index.wxml" />
+<import src="../../../style/dist/toptips/index.wxml" />
+<import src="../../../style/dist/toast/index.wxml" />
+
+<nonetwork></nonetwork>
+
+<!-- <template is="zan-tab" data="{{ ...tab1, componentId: 'tab1' }}"></template> -->
+<view class='typeBox fs34 alic cff z9'>
+  <view class="child {{tabType=='live'?'active':''}}" bindtap='changeType' data-type='live'>频道</view>
+  <view class="child {{tabType=='vod'?'active':''}}" bindtap='changeType' data-type='vod'>片库</view>
+</view>
+
+<view wx:if='{{havaList}}'>
+  <view class='zan-row list-top z9'>
+    <view class="fs30 alic" bindtap='deletefcn'>{{checkbable?'编辑':'编辑'}}</view>
+  </view>
+  <view class='lsit' style='margin-top:140rpx'>
+    <view class='zan-row listbox mt20'  wx:for='{{lists}}' wx:key="{{index}}">
+      <view class='zan-col zan-col-4 alic cf5c' wx:if="{{checkbable}}" bindtap="checkboxChange" data-index="{{index}}">
+        <view class="zan-icon alic {{item.ischeck?'zan-icon-checked':'zan-icon-check'}}"></view>
+      </view>
+      <view class="img-box zan-col zan-col-6 alic">
+        <navigator url="../detail-db/detail-db?id={{item.entityId}}&columnType={{item.videoType}}" wx:if="{{item.type==0}}">
+          <image src="{{item.image}}" mode="widthFix" class="img" />
+        </navigator>
+        <navigator url="../detail-zb/detail-zb?channelId={{item.entityId}}" wx:if="{{item.type!=0}}">
+          <image src="{{item.image}}" mode="widthFix" class="img" />
+        </navigator>
+      </view>
+      <!-- <view class="zan-col zan-col-14">
+        <view style='margin-left:30rpx;height:216rpx'>
+          <view wx:if="{{item.type==1}}">
+            <view class="fs30 pb18 ellipsis">{{item.title}}</view>
+            <view class='psr' style='height:54rpx;width:132%'>
+              <text class="fs26 pb20 rgb102 ellipsis psa" style='width:66%'>{{item.title?'正在直播：'+item.title:'暂无节目单'}}</text>
+              <button class="fs26 push-button">推屏</button>
+            </view>
+            <view class="fs26 rgb102 ellipsis">17:00-18:00</view>
+          </view>
+          <view wx:if="{{item.type==0}}">
+              <view class="fs26 ellipsis c99 pt10">更新至：{{item.updateVod}}集
+              </view>
+              <view class="fs26 ellipsis c99 pt10" wx:if="{{item.programNumber}}">
+                观看至：{{item.programNumber}}集
+              </view>
+          </view>
+        </view>
+      </view> -->
+
+      <view class="zan-col zan-col-14 " wx:if="{{tabType=='live'}}">
+          <!-- 频道 -->
+          <view class='ml30'>
+            <!-- <view class="lb1">回看</view>     -->
+            <!-- <view class='lb2'>回看结束</view> --><!-- 回看结束标志 -->
+            <view class="fs30 ellipsis lh1 pb18">{{item.title?item.title:'缺省数据'}}</view>
+            <view class='dflex psr'  style='width:132%'>
+              <text class="fs26 ellipsis wp70 c">{{item.title?'正在直播：'+item.title:'暂无节目单'}}</text>
+              <!-- <text class="fs26 ellipsis wp70 c66">交易时间：{{item.title}}</text> -->
+              <play  play_type='1' _channelId="{{item.entityId}}" _title="{{item.title}}" _channelName="{{item.channelName}}" _startTime="{{item.startTime}}" _endTime="{{item.endTime}}" _code="{{item.playCode}}">
+                <button class="fs26 push-button">推屏</button>
+              </play>
+            </view>
+            <view class="fs26 ellipsis c99 pt20">{{item.addtime}}</view>
+          </view>       
+        </view>
+
+        <view class="zan-col zan-col-14 ml30" wx:if="{{tabType=='vod'}}">
+          <!-- 片库 -->
+          <view class="fs30 ellipsis mb20 actor-text"  >{{item.title?item.title:'缺省数据'}}</view>
+          <view class='dflex psr mb20' style='width:120%'>           
+            <view class="fs26 ellipsis wp70"  >{{item.actors?item.tagsStr:'缺省数据'}}</view>   
+            <!-- <play play_type="2" _assetId="{{item.playCode}}" _providerId="{{item.cpCode}}" _id="{{item.id}}" _playNumber="{{item.programNumber}}" _idForSave="{{item.entityId}}" _productId="{{item.productId}}">
+              <button class="fs26 push-button">推屏</button>
+            </play>  -->
+            <navigator url="/pages/minor/detail-db/detail-db?id={{item.entityId}}&columnType={{item.videoType}}">
+              <button class="fs26 push-button">详情</button>
+            </navigator>
+          </view>
+          <view class="fs26 ellipsis actor-text">{{item.actors?item.actorsStr:'缺省数据'}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 底部选中 -->
+  <view class='editline z10' wx:if='{{checkbable}}'>
+    <view class='zan-row'>
+      <view class="zan-col zan-col-8  fs30 alic" bindtap='cancel'>取消</view>
+      <view class="zan-col zan-col-8 fs30 alic" bindtap='allcheck'>{{isallcheck?'取消全选':'全选'}}</view>
+      <view class="zan-col zan-col-8 fs30 alic icon-color" bindtap='deleteButton'>删除{{deleteNum>0?'('+deleteNum+')':''}}</view>   
+    </view>
+  </view>
+</view>
+
+<!-- 无列表信息时显示模块 -->
+<view wx:if='{{!havaList}}'>
+  <text class='fs34 c66 show alic pb32 no-info-text'>{{tabType=='live'?'暂无收藏频道':'暂无收藏视频'}}</text>
+  <text class='fs28 c97 show alic'>{{tabType=='live'?'开启观影，收藏您喜爱的频道吧！':'开启观影，收藏您喜爱的视频吧！'}}</text>
+</view>
+
+<template is="zan-dialog" data="{{ zanDialog }}"></template>
+<template is="zan-loadmore" data="{{ nodata}}" />
+<template is="zan-loadmore" data="{{ loading}}"></template>
+<template is="zan-toptips" data="{{ zanTopTips }}"></template>
+

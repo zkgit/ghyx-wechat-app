@@ -1,0 +1,6 @@
+.protocol {
+  position: fixed;
+  bottom: 0rpx;
+  left: 0;
+  line-height: 70rpx;
+}

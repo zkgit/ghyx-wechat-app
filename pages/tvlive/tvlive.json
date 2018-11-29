@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "play": "/component/play/play",
+    "nonetwork": "/component/nonetwork/nonetwork"
+  }
+}

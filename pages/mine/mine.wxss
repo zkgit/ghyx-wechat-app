@@ -1,0 +1,148 @@
+/* pages/mine/mine.wxss */
+
+page {
+  background: #f7f7f7;
+}
+
+.user-head {
+  position: relative;
+  top: 0;
+  height: 276rpx;
+  width: 100%;
+}
+
+.user-head-bg {
+  height: 498rpx;
+  width: 100%;
+  filter: blur(14px);
+}
+
+.user-head-bg-box {
+  height: 276rpx;
+  width: 100%;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.user-head-info {
+  position: absolute;
+  top: 40rpx;
+  width: 100%;
+  text-align: center;
+}
+
+.user-head-info .to-login {
+  width: 9rpx;
+  height: 18rpx;
+  color: #000;
+  margin-left: 20rpx;
+}
+
+.user-head-logo {
+  height: 128rpx;
+  width: 128rpx;
+  border-radius: 50%;
+  /* margin-bottom: 10px; */
+  overflow:hidden;
+  margin: 0 auto;
+  /* border: 1px solid #fff; */
+}
+
+.user-head-name {
+  text-align: center;
+  font-size: 34rpx;
+  margin-top: 20rpx;
+  /* color: #fff; */
+}
+
+.user-nav-center {
+  display: flex;
+  height: 180rpx;
+  background: #fff;
+  box-shadow: 0px 2px 2px rgba(173, 173, 173, 0.2);
+}
+
+.user-nav-flx {
+  flex: 1;
+  text-align: center;
+}
+
+.user-nav-flx image {
+  width: 41rpx;
+  height: 54rpx;
+  margin-top: 40rpx;
+}
+
+.user-nav-flx text {
+  font-size: 28rpx;
+}
+
+.to-bemember {
+  margin-top: 0 !important;
+  border-top: 1rpx solid #eee;
+}
+
+.user-nav-bottom1 {
+  width: 100%;
+  margin-top: 20rpx;
+  background: #fff;
+  font-size: 32rpx;
+}
+
+.user-nav-bottom1 .image_icon {
+  width: 74rpx;
+  height: 33rpx;
+  position: absolute;
+  top: 38rpx;
+}
+
+.user-nav-bottom1 .image_more {
+  width: 74rpx;
+  height: 16rpx;
+  position: absolute;
+  top: 45rpx;
+  right: 0;
+}
+
+.user-nav-bottom1 text {
+  margin-left: 80rpx;
+}
+
+.user-nav-hit {
+  height: 108rpx;
+  line-height: 108rpx;
+  position: relative;
+}
+
+.nav-line {
+  height: 1rpx;
+  /* width: 670rpx; */
+  margin-left: 20rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+
+.message-dot{
+  width:14rpx;
+  height:14rpx;
+  background-color:red;
+  z-index:999;
+  display:block;
+  position:absolute;
+  top:46rpx;
+  left:18%;
+  border-radius:50%;
+}
+.unloading{
+  margin-top: 20rpx;
+  width: 100%;
+  font-size: 26rpx;
+  background: #fff;
+  border-radius: 2px
+}
+
+.haveDeviceStatus{
+  font-size:24rpx;
+  color:#999;
+  position:absolute;
+  right:64rpx;
+}

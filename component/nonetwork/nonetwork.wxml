@@ -1,0 +1,12 @@
+<view class='page' wx:if='{{_nonet}}'>
+  <view class='no-network' >
+    <image class='bg-img ' src='/image/nonet.png'></image>
+    <text class='t'>网络不可用，请检查您的网络设置</text>
+    <button class='btn' bindtap='getNetType'>点击刷新</button>
+  </view>
+</view>
+
+<!-- <view class='havenet' wx:if='{{!_nonet}}' catchtap='getNetType'>
+  
+</view> -->
+

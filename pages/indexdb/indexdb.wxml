@@ -1,0 +1,115 @@
+<import src="../../common/template.wxml" />
+
+<!-- 没有网络时显示模块 -->
+<template is="nonetBlock" data="{{nonet:nonet}}" />
+
+<!-- <nonetwork></nonetwork> -->
+
+<view wx:if='{{!nonet}}'>
+<!-- <view> -->
+<!-- <searchRank></searchRank> -->
+<view class="stv-container pt10" style='overflow:hidden'>
+  <!-- <view class="tab-bar">
+    <view wx:for="{{tabs}}" wx:key="unique" data-index="{{index}}" data-type='{{item.type}}' bindtap="handlerTabTap" class="tab {{activeTab==index?'tab-active':''}}" style="width: {{stv.windowWidth/tabs.length}}px">
+      <text>{{item.name}}</text>
+    </view>
+    <view style="width: {{stv.lineWidth}}px; left: {{stv.offset/tabs.length}}px" class="under-line {{!stv.tStart? 'withAnimate': ''}}"></view>
+  </view> -->
+
+  <view class='type-ly' style='overflow:hidden'>
+    <!--横向滑动  -->
+    <view class="type-navbar psr">
+      <view class="type-box psa">
+          <view id='0' data-type='region' data-value='{{categories.region[0]}}' class="type-navbar-item {{region == 0 ? 'type-item-on' : ''}}" bindtap="tabClick">
+            {{categories.region[0]}}
+          </view>
+      </view>
+      <scroll-view  scroll-x class='tag-scroll-box'>
+        <view class="type-box" wx:for-items="{{regionList}}" wx:key="id">
+          <view id='{{index+1}}' data-type='region' data-value='{{item}}' class="type-navbar-item {{region == index+1 ? 'type-item-on' : ''}}" bindtap="tabClick">
+            {{item}}
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+    <view class="type-navbar psr">
+      <view class="type-box psa">
+          <view id='0' data-type='tag' data-value='{{categories.tag[0]}}' class="type-navbar-item {{tag == 0 ? 'type-item-on' : ''}}" bindtap="tabClick">
+            {{categories.tag[0]}}
+          </view>
+      </view>
+      <scroll-view  scroll-x class='tag-scroll-box'>
+        <view class="type-box" wx:for-items="{{tagList}}" wx:key="id">
+          <view id='{{index+1}}' data-type='tag' data-value='{{item}}' class="type-navbar-item {{tag == index+1 ? 'type-item-on' : ''}}" bindtap="tabClick">
+            {{item}}
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+
+    <view class="type-navbar psr">
+      <view class="type-box psa" >
+          <view id='0' data-type='year' data-value='{{categories.year[0]}}' class="type-navbar-item {{year == 0 ? 'type-item-on' : ''}}" bindtap="tabClick">
+            {{categories.year[0]}}
+          </view>
+      </view>
+      <scroll-view  scroll-x class='tag-scroll-box'>
+        <view class="type-box" wx:for-items="{{yearList}}" wx:key="id">
+          <view id='{{index+1}}' data-type='year' data-value='{{item}}' class="type-navbar-item {{year == index+1 ? 'type-item-on' : ''}}" bindtap="tabClick">
+            {{item}}
+          </view>
+        </view>
+      </scroll-view>
+    </view> 
+
+    <!-- <scroll-view class="type-navbar" scroll-x>
+      <view class="type-box" wx:for-items="{{categories.tag}}" wx:key="id">
+        <view id="{{index}}" data-type='tag' class="type-navbar-item {{tag == index ? 'type-item-on' : ''}}" bindtap="tabClick">
+          {{item}}
+        </view>
+      </view>
+    </scroll-view>
+
+
+    <scroll-view class="type-navbar" scroll-x>
+      <view class="type-box" wx:for-items="{{categories.year}}" wx:key="id">
+        <view id="{{index}}" data-type='year' class="type-navbar-item {{year == index ? 'type-item-on' : ''}}" bindtap="tabClick">
+          {{item}}
+        </view>
+      </view>
+    </scroll-view> -->
+
+
+    <!--横向滑动结束  -->
+  </view>
+  <view>
+    <template is="listSmalldb" data="{{_list:siftings,freshBtn:false}}" />
+  </view>
+
+
+
+
+  <!-- 内容  -->
+  <!-- <view class="scroll-view"> -->
+  <!-- <scroll-view style="height:100%" scroll-y> -->
+
+  <!-- <view bindtouchstart="handlerStart" catchtouchmove="handlerMove" bindtouchcancel="handlerCancel" bindtouchend="handlerEnd" class="scroll-view-wrapper {{!stv.tStart? 'withAnimate': ''}}" style="left: -{{stv.offset}}px">
+
+        <view style="width: {{stv.windowWidth}}px;" wx:for="{{tabs}}" wx:key="unique" class="one-scene">
+        
+        </view>
+
+      </view>
+    <!-- </scroll-view> -->
+  <!-- </view>  -->
+  <!--内容结束   -->
+  <view>
+    <template is="loadings" data="{{loading,loadtxt}}" />
+  </view>
+</view>
+
+</view>
+
+

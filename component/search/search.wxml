@@ -1,0 +1,11 @@
+
+  <view class="searchRank">
+    <navigator url="/pages/search/search">
+      <view class="form">
+        <view>
+          <icon type="search" size="15" color="#cccccc" catchtap="deleteTxt" />
+          <view class="cl">{{_r_value}}</view>
+        </view>
+      </view>
+    </navigator>
+  </view>

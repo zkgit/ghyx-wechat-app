@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "partremote": "/component/partremote/partremote",
+    "detail_des": "/component/detail_des/detail_des",
+    "play": "/component/play/play",
+    "nonetwork": "/component/nonetwork/nonetwork"
+  }
+}

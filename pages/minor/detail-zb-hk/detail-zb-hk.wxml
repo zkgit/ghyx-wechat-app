@@ -1,0 +1,133 @@
+<import src="../../../style/dist/toast/index.wxml" />
+<import src="../../../style/dist/dialog/index.wxml" />
+<import src="/common/template.wxml" />
+
+<nonetwork></nonetwork>
+
+<view class='detail detail_zb'>
+  <detail_des _desc_data="{{detail}}" _zb_bs="false" wx:if="{{detail}}"></detail_des>
+  <!-- 明星列表 -->
+  <template is="detail_star" data="{{actorlist}}" wx:if="{{actorlist}}" />
+
+  <view class="stv-container">
+    <view class='zan-row fjbetween  dflex fcenter'>
+      <view class="zan-col zan-col-14  ">
+        <template is="iti_tittle" data="{{iti_tittle:title}}" />
+      </view>
+      <view class="zan-col zan-col-8 zan-col-offset-7 fs26 c99 alir dflex fcenter" bindtap='collect'>
+        <image style='width:40rpx;height:40rpx' src='{{mystate.is_zbcollect?"../../../image/collect_press.png":"../../../image/collect.png"}}' class='mr10 '></image>
+        <text class="{{mystate.is_zbcollect?'c':''}}">{{mystate.is_zbcollect?'已收藏频道':'收藏频道'}}</text>
+      </view>
+    </view>
+    <view class='dateBox dflex h88 wp100'>
+      <scroll-view class="dateBar" scroll-with-animation="true" scroll-x scroll-into-view='tm-{{tmView}}'>
+        <view id='tm-{{index}}' wx:for="{{jmtime}}" bindtap='changeday' data-index="{{index}}" data-time="{{item.data}}" class="alic dateTab">
+          <view class="fs28 tdCx {{activeDate==item.data?'c bgf7':''}}  lh28">
+            {{index!=6?item.day:'今天'}}
+          </view>
+          <!-- <view class='fs18'>{{item.timestr}}</view> -->
+        </view>
+      </scroll-view>
+    </view>
+    <view class="scroll-view">
+      <scroll-view scroll-y class='rightEpg {{index==options.index&&activeDate==options.data?"live":""}}' scroll-top='{{scrolltop}}' scroll-with-animation="true" scroll-into-view='el-{{toView}}' style='height:{{deciceH-100}}px'>
+        <!-- 区分直播回看和直播 -->
+        <!-- 回看 -->
+        <view wx:for="{{jmlist}}" class='item ptr' wx:if="{{item.flag==0}}">
+          <navigator id='el-{{index}}' url="/pages/minor/detail-zb-hk/detail-zb-hk?channelId={{item.channelId}}&data={{activeDate}}&index={{index}}&flag={{item.flag}}" class=''>
+            <text class="time pta fs26 {{options.index==index&&item.data==options.data?'cf5':'c33'}}">{{item.startTime}}</text>
+            <view class='dt'>
+              <!-- <image class='dot' src="/image/dot.png"></image>         -->
+              <view class="fs30 c00 dl {{options.index==index&&item.data==options.data?'cf5':'c33'}} ellipsis">{{item.title}}</view>
+              <!-- <view class="fs24 c99 ellipsis ">{{item.flag==0?'已结束':item.startTime+'播出'}}</view> -->
+              <!-- <view class='bgf7' style='width:300rpx;height:6rpx;'> -->
+              <!-- <view class='hp100 mt40' style='width:{{item.percentage}}%;background:#ff510d;'></view>  -->
+
+              <!-- </view> -->
+            </view>
+          </navigator>
+          <play play_type='0' _assetId="{{item.playCode}}" _channelId="{{item.channelId}}" _title="{{item.title}}" _channelName="{{item.channelName}}" _startTime="{{item.date+' '+item.startTime}}" _endTime="{{item.date+' '+item.endTime}}">
+            <view class='btn pta alic'>
+              <image src="/image/tv{{item.flag}}.png"></image>
+              <!-- <view class='fs20 c22'>{{arr[item.flag]}}</view> -->
+            </view>
+          </play>
+        </view>
+
+        <!-- 直播 -->
+        <view wx:for="{{jmlist}}" class='item ptr' wx:if="{{item.flag==1}}">
+          <navigator id='el-{{index}}' url="/pages/minor/detail-zb/detail-zb?channelId={{item.channelId}}" class=''>
+            <!-- <image class='dot' src="/image/{{item.flag==1?'dot_current':'dot'}}.png"></image> -->
+            <text class="time pta fs26 ">{{item.startTime}}</text>
+            <view class='dt'>
+              <view class="fs30 c00 dl ellipsis c33">{{item.title}}</view>
+              <!-- <view class="fs24  ellipsis">
+            {{item.flag==1?'正在直播':item.startTime+'播出'}}
+          </view> -->
+              <!-- <view class='bgf7' style='width:300rpx;height:6rpx;'>
+            <view class='hp100 mt40' style='width:{{item.percentage}}%;background:#ff510d;'></view>
+             <view class='btn pta alic'>
+              <image src="/image/tv{{item.flag}}.png"></image>
+              <view class='fs20 c22'>{{arr[item.flag]}}</view>
+            </view> 
+          </view> -->
+            </view>
+          </navigator>
+          <play play_type='1' _channelId="{{item.channelId}}">
+            <view class='btn pta alic'>
+              <image src="/image/tv{{item.flag}}.png"></image>
+              <!-- <view class='fs20 c22'>{{arr[item.flag]}}</view> -->
+            </view>
+          </play>
+        </view>
+        <!-- 即将播放 -->
+        <view wx:for="{{jmlist}}" class='item ptr' wx:if="{{item.flag==2}}">
+          <navigator id='el-{{index}}' url="/pages/minor/detail-zb-hk/detail-zb-hk?channelId={{item.channelId}}&data={{activeDate}}&index={{index}}&flag={{item.flag}}" class=''>
+            <!-- <image class='dot' src="/image/{{item.flag==1?'dot_current':'dot'}}.png"></image> -->
+            <text class="time pta fs26 {{item.flag==1?'cf5':'c33'}}">{{item.startTime}}</text>
+            <view class='dt'>
+              <view class='fs30 c00 dl ellipsis'>{{item.title}}</view>
+              <!-- <view class="fs24  c99 ellipsis">
+            {{item.flag==1?'正在直播':item.startTime+'播出'}}
+          </view> -->
+              <!-- <view class='bgf7' style='width:300rpx;height:6rpx;'>
+            <view class='hp100 mt40' style='width:{{item.percentage}}%;background:#ff510d;'></view>
+             <view class='btn pta alic'>
+              <image src="/image/tv{{item.flag}}.png"></image>
+              <view class='fs20 c22'>{{arr[item.flag]}}</view>
+            </view> 
+          </view> -->
+            </view>
+          </navigator>
+          <view class='btn pta alic' bindtap='ordertv' data-eq='{{index}}' data-item='{{item}}'>
+            <image src="{{item.isReserve==1?'/image/tv2_press.png':'/image/tv2.png'}}"></image>
+            <text wx:if="{{item.isReserve==1}}" class='fs18 pta cf5'>已预约</text>
+            <!-- <view class='fs20 c22'>{{arr[item.flag]}}</view> -->
+          </view>
+        </view>
+        <!-- end -->
+        <view hidden='{{!isshow_default}}' class='alic c99 fs28'>
+          <image src='/image/tvlive_default.png' mode='widthFix' class='' style='width:484rpx;padding-top:40rpx;'></image>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <!-- 相关推荐 -->
+  <view wx:if="{{tjlist}}">
+    <template is="iti_tittle" data="{{iti_tittle:'相关推荐'}}" />
+    <template is="listSmalldb" data="{{_list:tjlist,iszb:false}}" />
+  </view>
+
+  <play play_type='0' _assetId="{{activejson.playCode}}" _channelId="{{activejson.channelId}}" _title="{{activejson.title}}" _channelName="{{activejson.channelName}}" _startTime="{{activejson.date+' '+activejson.startTime}}" _endTime="{{activejson.date+' '+activejson.endTime}}">
+    <view class='tvplay cff fs30 '  wx:if="{{options.flag==0}}">推屏</view>
+  </play>
+
+
+  <template is="zan-toast" data="{{ zanToast }}"></template>
+  <!-- 返回首页 -->
+  <template is="btn_backhome" data="{{ backhome }}"></template>
+</view>
+<template is="zan-dialog" data="{{ zanDialog }}"></template>
+
+<!--遥控器  -->
+<partremote _wid_pro='55' _left_pro='10' _top_pro='10' _bottom_pro='10'></partremote>

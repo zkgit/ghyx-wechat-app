@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "searchRank": "/component/search/search",
+    "nonetwork": "/component/nonetwork/nonetwork"
+  }
+}

@@ -1,0 +1,327 @@
+<!-- 添加模板请备注 -->
+
+<!--顶部滑动导航-->
+<template name="topbarscroll">
+  <view class="nav-scroll">
+    <scroll-view class="scroll-view_H" scroll-x="true" style="width: 100%">
+      <text wx:for="{{section}}" wx:key="id" id="{{item.id}}" catchtap="handleTap" class="nav-name {{item.id == currentId ? 'nav-hover' : ''}}">{{item.name}}</text>
+    </scroll-view>
+  </view>
+</template>
+<!-- 登录注册 -->
+<template name='regphone'>
+  <view class='item bdb dflex fcenter ptr'>
+    <input type='number' id='userPhone' name='userPhone' maxlength='11' cursor-spacing="200" placeholder='请输入您的手机号' placeholder-class="placehold" class='zan-cell__bd' bindinput="input" data-name='phone' bindblur="blur" bindfocus='focus' value='{{_phone}}'></input>
+    <view class='zan-icon zan-icon-clear fs30 iconimg c99' hidden='{{!_phone}}' bindtap='clearphone'></view>
+    <view class='pta phonehis bgcff wp100 bsz c66' hidden="{{!_cachephone.length||!_phoneblur}}">
+    <!-- <view class='pta phonehis bgcff wp100 bsz c66' hidden="{{!_cachephone.length}}"> -->
+    <!-- <view style='height:{{_cachephone.length>1?"320":""}}rpx'> -->
+      <view wx:for="{{_cachephone}}" class='itemhis dflex bsz'>
+          <text class='zan-cell__bd' bindtap='changephone' data-index="{{index}}">{{item}}</text>
+          <view class='zan-icon zan-icon-clear fs24 iconimg c99' data-index="{{index}}" bindtap='delphocache'></view>
+        </view>
+    <!-- </view> -->
+      
+    </view>
+  </view>
+</template>
+<template name='regpassword'>
+  <view class='item bdb dflex fcenter'>
+    <input placeholder='{{_placeholder}}' id='userPwd' name='userPwd' placeholder-class="placehold" bindinput='input' bindblur='blur' password='{{!_showpwd}}' data-name='pwd' value='{{_value}}' data-pwd='{{_pwd}}' class="zan-cell__bd" maxlength='16'></input>
+    <view wx:if='{{_pwd=="pwd1"?"1":""}}' class='zan-icon {{_showpwd?"zan-icon-password-view":"zan-icon-password-not-view"}} fs34 c iconimg' bindtap='togglepwd'></view>
+  </view>
+</template>
+<template name='regcode'>
+  <view class="dflex fcenter item bdb">
+    <input type="number" placeholder="请输入手机验证码" placeholder-class="placehold" maxlength='4' bindinput="input" bindblur="blur" value='{{_code}}' data-name='code' class="zan-cell__bd" />
+    <view class="alir  fs28 {{_codestate?'c':'c99'}}" bindtap='getcode'>
+      {{_time>0?'重新获取'+_time+'s':'获取验证码'}}
+    </view>
+  </view>
+</template>
+
+
+<!-- loading 和列表部分  -->
+<template name="loadings">
+  <view class='_loading' hidden="{{!loading}}">{{loadtxt}}</view>
+</template>
+
+<!-- 栏目标题展示 -->
+<template name="iti_tittle">
+  <view class="listNews">
+    <view class="listTitle">
+      <view class="listText">
+        <text class="text">{{iti_tittle}}</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!--栏目标题+more+跳转-->
+<template name="listtitle">
+  <view class="listNews" bindtap='{{func}}'>
+    <navigator url="{{url}}" wx:if="{{!_plan}}" open-type="{{openType?openType:'navigate'}}">
+      <view class="listTitle">
+        <view class="listText">
+          <text class="text">{{_title}}</text>
+        </view>
+        <view class='listMore' wx:if="{{!showMore}}">
+          <text class="more"></text>
+          <image class='img' src='/image/more_fr.png' mode="aspectFit"></image>
+        </view>
+      </view>
+    </navigator>
+
+    <view class="listTitle" wx:if="{{_plan}}">
+      <view class="listText">
+        <text class="text">{{_title}}</text>
+      </view>
+      <view class='listMore' bindtap="getUlike" wx:if="{{!showMore}}">
+        <image class='refresh' src='/image/refresh.png' mode="aspectFit"></image>
+        <text class="re-more">换一批</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!--一级页面栏目内容  -->
+<template name="listSmall">
+  <view class="listNews">
+    <view class="list-flex">
+      <block wx:for="{{_list}}" wx:key="*this">
+        <view class="listBox">
+          <!--直播   -->
+          <navigator wx:if="{{iszb}}" url="/pages/minor/detail-zb/detail-zb?channelId={{item.channelId}}">
+            <view class="boxPic">
+              <image src="{{item.image}}" />
+            </view>
+            <view class="boxTitle1">
+              <view class='t1'>{{item.title}}</view>
+              <view class='t2'>卫视名称</view>
+            </view>
+          </navigator>
+          <!--点播  -->
+          <navigator wx:if="{{!iszb}}" url="/pages/minor/detail-db/detail-db?id={{item.id}}&columnType={{item.videoType}}">
+            <view class="boxPic">
+              <image src="{{item.image}}" />
+              <view class='tv_tb_part'>
+                <!-- <image src='http://ikanpic.kanketv.com/image/live/icon2/{{item.kankeChannel}}.png' mode="aspectFill"></image> -->
+                <text>更新至多少集</text>
+                <view class='pre'>
+                  <progress percent="{{item.percentage}}" activeColor="#ff510d" active stroke-width="2" />
+                </view>
+              </view>
+            </view>
+            <!-- <view class="boxTitle1">
+              <view>{{item.title}}</view>
+               <view class='t2'>卫视名称</view> 
+            </view> -->
+            <view class="boxTitle2">
+              <text class='t'>{{item.title}}</text>
+            </view>
+          </navigator>
+        </view>
+      </block>
+      <view class='changePage' bindtap='{{freshFun}}'>
+        <image class='refresh' src='/image/refresh.png' mode="aspectFit"></image>
+        <text class="t">换一换</text>
+      </view>
+    </view>
+    <view class='_line'></view>
+  </view>
+</template>
+
+<!--直播-->
+<template name="listzb">
+  <view class="listNews">
+    <view class="list-flex">
+      <block wx:for="{{_list}}" wx:key="{{item.channelId}}">
+        <view class="listBox">
+          <navigator url="/pages/minor/detail-zb/detail-zb?channelId={{item.channelId}}">
+            <view class="boxPic">
+              <text class='poster rb' wx:if='{{item.channelTag}}'>{{item.channelTag}}</text>
+              <!-- <text class='poster zx'>电视尊享</text>
+              <text class='poster yg'>预告</text>
+              <text class='poster sb'>首播</text> -->
+              <text class='poster-hk' wx:if="{{hk}}">{{item.dateStr}}   {{item.startTime}}</text>
+              <image src="{{item.image}}" />
+            </view>
+            <view class="boxTitle1">
+              <view class='t1'>{{item.title}}</view>
+              <view class='t2'>{{item.channelName}}</view>
+            </view>
+          </navigator>
+        </view>
+      </block>
+      <view class='changePage' bindtap='{{freshFun}}' data-tag='{{tag}}'>
+        <image class='refresh' src='/image/refresh.png' mode="aspectFit"></image>
+        <text class="t">换一换</text>
+      </view>
+    </view>
+    <view class='_line'></view>
+  </view>
+</template>
+<!-- 点播 -->
+<template name="listSmalldb">
+  <view class="listNews">
+    <view class="list-flex">
+      <block wx:for="{{_list}}" wx:key="{{item.id}}">
+        <view class="listBox" style='height:352rpx'>
+          <navigator url="/pages/minor/detail-db/detail-db?id={{item.id}}&columnType={{item.videoType}}">
+            <view class="boxPic">
+              <image src="{{item.image}}" />
+              <view class='tv_tb_part'>
+                <text wx:if="{{item.videoType=='tv'&&item.currentCount>0}}">更新至{{item.currentCount}}集</text>
+                <!-- <view class='pre'>
+                  <progress percent="{{item.percentage}}" activeColor="#ff510d" active stroke-width="2" />
+                </view> -->
+              </view>
+            </view>
+            <view class="boxTitle2">
+              <text class='t'>{{item.title}}</text>
+            </view>
+          </navigator>
+        </view>
+      </block>
+      <view class='changePage' bindtap='{{freshFun}}' wx:if="{{freshBtn}}" data-tag='{{tag}}'>
+        <image class='refresh' src='/image/refresh.png' mode="aspectFit"></image>
+        <text class="t">换一换</text>
+      </view>
+    </view>
+    <view class='_line' wx:if="{{freshBtn}}"></view>
+  </view>
+</template>
+
+<!--回看-->
+<template name="listhk">
+  <view class="listNews">
+    <view class="list-flex">
+      <block wx:for="{{_list}}" wx:key="{{item.channelId}}">
+        <view class="listBox">
+          <navigator url="/pages/minor/detail-zb-hk/detail-zb-hk?channelId={{item.channelId}}&data={{item.date}}&flag=0&kankeId={{item.kankeId}}">
+            <view class="boxPic"> 
+              <!-- <text class='poster rb'>热播</text> -->
+              <!-- <text class='poster zx'>电视尊享</text>
+              <text class='poster yg'>预告</text>
+              <text class='poster sb'>首播</text> -->
+              <text class='poster-hk' wx:if="{{hk}}">{{item.dateStr}}   {{item.startTime}}</text>
+              <image src="{{item.image}}" />
+            </view>
+            <view class="boxTitle1">
+              <view class='t1'>{{item.title}}</view>
+              <view class='t2'>{{item.channelName}}</view>
+            </view>
+          </navigator>
+        </view>
+      </block>
+      <view class='changePage' bindtap='{{freshFun}}' data-tag='{{tag}}'>
+        <image class='refresh' src='/image/refresh.png' mode="aspectFit"></image>
+        <text class="t">换一换</text>
+      </view>
+    </view>
+    <view class='_line'></view>
+  </view>
+</template>
+
+<!--二级页面栏目内容  -->
+<template name="listMore">
+  <view class="listNews">
+    <view class="list-flex">
+      <block wx:for="{{_list}}" wx:key="*this">
+        <view class="listBox">
+          <!--直播   -->
+          <navigator wx:if="{{item.channelId}}" url="/pages/minor/detail-zb/detail-zb?channelId={{item.channelId}}">
+            <view class="boxPic">
+              <image src="{{item.image}}" />
+              <view class='tv_tb_part'>
+                <image src='http://ikanpic.kanketv.com/image/live/icon2/{{item.kankeChannel}}.png' mode="aspectFill"></image>
+                <text>{{item.channelName}}</text>
+                <view class='pre'>
+                  <progress percent="{{item.percentage}}" activeColor="#ff510d" active stroke-width="2" />
+                </view>
+              </view>
+            </view>
+            <view class="boxTitle1">
+              <text>{{item.title}}</text>
+            </view>
+          </navigator>
+          <!--点播  -->
+          <navigator wx:else url="/pages/minor/detail-db/detail-db?id={{item.id}}&columnType={{item.videoType}}">
+            <view class="boxPic">
+              <image src="{{item.image}}" />
+            </view>
+            <view class="boxTitle1">
+              <text>{{item.title}}</text>
+            </view>
+            <!-- <view class="boxTitle2">
+                            <text>{{item.desc}}</text>
+                        </view> -->
+          </navigator>
+        </view>
+      </block>
+    </view>
+  </view>
+</template>
+
+
+
+
+<!-- 详情页明星列表 -->
+<template name="detail_star">
+  <view class='pt40 pl20  ovh actorlist'>
+    <scroll-view scroll-x style='height:160rpx;white-space:nowrap;'>
+      <navigator url="/pages/minor/star/star?name={{item.actorName}}&starId={{item.starId}}&columnType={{options.columnType}}" wx:for='{{actorlist}}' wx:if="{{item.imageSmall}}" open-type='redirect' class='actor alic ptr'>
+        <image src='{{item.imageSmall}}' data-error='/image/mxdefault.png' binderror=''></image>
+        <view class='director pta cff fs20' wx:if="{{(item.status==1)&&(options.columnType!='arts')}}">导演</view>
+        <view class='fs26 c22 ellipsis wp100'>{{item.actorName}}</view>
+      </navigator>
+    </scroll-view>
+  </view>
+</template>
+
+<!--分享一键回到首页  -->
+<template name="btn_backhome">
+  <navigator url="/pages/index/index" open-type="switchTab" wx:if='{{backhome}}'>
+    <view class='btn_backhome'>
+      <view class='zan-icon zan-icon-points-mall fs40 pt5'></view>
+      <view class='fs20'>首页</view>
+    </view>
+  </navigator>
+</template>
+
+<!--绑定设备提示框-->
+<template name='devicebox'>
+  <view class=' {{_showdevice?"zan-dialog--show":"dsn"}} '>
+    <view class='zan-dialog--mask z10' bindtap='hidedevice'></view>
+    <view class='device_content bgcff'>
+      <image src='/image/close_icon.png' class='close' bindtap='hidedevice'></image>
+      <view class='device-content-header'>
+        <input placeholder='请输入绑定码' placeholder-class='fs34 c88 alic' class='h88 lh88 alic' value="{{deviceval}}" bindblur='deviceblur'></input>
+        <button class='zan-btn cff regbtn mt44' bindtap='deviceconfrim'>确认绑定</button>
+        <view class='c33 fs30 pb10'>↓如何获取绑定码↓</view>
+        <view class='c88 fs28'>您必须为歌华有线电视用户：请按手机遥控器主页键点击“生活”栏目-“云飞视”，在二维码下方获取绑定码。</view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!-- 无网络时现实模块 -->
+<template name='nonetBlock'>
+  <view class='no-network' wx:if='{{nonet}}'>
+    <image class='bg-img show' src='/image/nonet.png'></image>
+    <text class='fs28 c99 show alic t'>网络不可用，请检查您的网络设置</text>
+    <button class='alic cff btn fs28' bindtap='onShow'>点击刷新</button>
+  </view>
+</template>
+
+<template name='orderList'>
+  <view class='buy-list'>
+  <image class='img' src='image/close_icon.png'></image>
+    <view></view>
+    <view wx:for='{{_list}}'>
+    
+    </view>
+  </view>
+</template>
+
+

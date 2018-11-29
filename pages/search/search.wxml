@@ -1,0 +1,221 @@
+<import src="../../style/dist/dialog/index.wxml" />
+
+<view class="searchRank2 h88 pt10 pb10 pl20 bsz bgcff">
+  <view class="form ptr">
+    <view class="cl ptr bsz">
+      <icon size="15" color="#cccccc" type='search'></icon>
+      <input placeholder="{{valForPlacehoder}}" placeholder-class='fs26 c99' bindinput='searchsub' value='{{inputval}}' class='fs26 c33 pra' focus/>
+      <icon type='clear' size="15" color='#666' hidden='{{!inputval}}' bindtap='search_clear' class='qx_btn'></icon>
+    </view>
+    <view class='fs30 pta t0  r0 btn alic c'>
+    <!-- <text bindtap='goback' hidden="{{inputval}}">取消</text>
+      <text bindtap='clicksearch' hidden="{{!inputval}}">搜索</text> </view> -->
+      <text bindtap='clicksearch'>搜索</text> </view>
+  </view>
+</view>
+
+<view class='searchbox'>
+  <view class='default' hidden='{{inputval}}'>
+    <view class='his bdb' hidden='{{!keyhistory.length}}'>
+      <view class='fs32 c33 fwb'>搜索历史
+        <view class='zan-icon zan-icon-delete fr mr20 fs40 pl20 c99' bindtap='clearhis'></view>
+      </view>
+      <view class='pt30 ovh'>
+        <view class='hisli fl pb20 fs26 c33 bgf7' wx:for='{{keyhistory}}' bindtap='keysearch' data-key="{{item}}" wx:if="{{item}}">{{item}}</view>
+      </view>
+    </view>
+    <view class='fs32 c33 fwb pl20 pr20 pt40 pb30'>热门搜索</view>
+    <view class='hot_ul  pl10 pr10 ovh fs26 c66 dflex '>
+      <view class='item  mb30 pl10 pr10 bsz wp50 dflex fcenter' wx:for="{{hotList}}" bindtap='keysearch' data-key="{{item.word}}">
+        <image src='/image/search/search_{{index+1}}.png' mode='aspectFit' class='mr20'></image>
+        <text class=' fs30 wp70 ellipsis'>{{item.word}}</text>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{textList.length>0}}" hidden='{{!textList.length||!inputval}}' class='fs30 c33 bgcff searchText'>
+    <view class='bdb lh88 h88 pl20 pr20' wx:for='{{textList}}' bindtap='keysearch' data-key='{{item}}'>{{item}}</view>
+  </view>
+  <view class='searchresult' hidden='{{!isresult||(type!="vod")}}'>
+    <view class='bgcff  ovh fixed fs32 c33  wp100 bsz bdb tab-bar'>
+      <view class='tab bsz fl alic {{vodtype==index?"c tab-active":""}} pt20 fwb' style='width:{{100/typelist.length}}%' bindtap='changevodType' data-vodtype='{{index}}' wx:for='{{typelist}}'>
+        {{item.name}}
+      </view>
+    </view>
+    <view class='fixed c33 fs28 bgcff wp100 ovh' hidden='{{vodtype==1}}'>
+    </view>
+    <scroll-view class='panel list_zb wp100 ' scroll-y hidden='{{vodtype!=0}}' lower-threshold='100' bindscrolltolower='scrollLower'>
+      <!-- wx:for="{{searchList}}" hidden="{{searchList.length==0}}"  -->
+      <block wx:for="{{alllist}}">
+        <view class='{{((index==alllist.length)||(!alllist[index+1].epgs))?"bdb10 pb10":""}}' wx:if='{{item.epgs&&item.epgs[0]}}'>
+          <view class='item wp100 pl20 pr20 pt20 pb20 bsz ptr ovh dflex fcenter '>
+            <view class='img zan-col zan-col-6'>
+              <navigator class='size-cover ptr bgr3 ovh ' url="/pages/minor/detail-zb/detail-zb?channelId={{item.channelId}}">
+                <image class='wp100 hp100 pta l0 t0 ' src='{{item.epgs[0].image}}'></image>
+              </navigator>
+            </view>
+            <navigator class='ptr  pt30 fs26 lh24 ovh ml30 zan-col zan-col-13' url="/pages/minor/detail-zb/detail-zb?channelId={{item.channelId}}">
+              <view class='fs30  ellipsis'>{{item.channelName}}</view>
+              <view class='ellipsis c fs26'>正在直播：{{item.epgs[0].title}}</view>
+              <view class='ellipsis c66 fs26'>{{item.epgs[0].startTime}}-{{item.epgs[0].endTime}}</view>
+            </navigator>
+            <play play_type='1' _channelId="{{item.channelId}}">
+              <view class='push-button alic fs26'>推屏</view>
+            </play>
+          </view>
+        </view>
+
+        <view class='{{(index==alllist.length||alllist[index+1].epgs||alllist[index+1].videoType)?"bdb10 pb10":""}}' wx:if='{{!item.epgs&&!item.videoType}}'>
+          <block wx:if='{{item.iflive==-1}}'>
+            <view class='item wp100 pl20 pr20 pt20 pb20 bsz ptr ovh dflex fcenter'>
+              <view class='img zan-col zan-col-6'>
+                <!-- <navigator class='size-cover ptr bgr3 ovh ' url="/pages/minor/detail-zb-hk/detail-zb-hk?channelId={{item.channelId}}&data={{item.date}}&index=13&flag=0"> -->
+                <navigator class='size-cover ptr bgr3 ovh' url="/pages/minor/detail-zb-hk/detail-zb-hk?channelId={{item.channelId}}&data={{item.date}}&flag=0&kankeId={{item.kankeId}}">
+                  <image class='wp100 hp100 pta l0 t0 ' src='{{item.image}}'></image>
+                </navigator>
+              </view>
+              <!-- <navigator class='ptr  pt30 fs26 lh24 ovh ml30 zan-col zan-col-13' url="/pages/minor/detail-zb-hk/detail-zb-hk?channelId={{item.channelId}}&data={{item.date}}&index=13&flag=0"> -->
+              <!-- <navigator class='ptr  pt30 fs26 lh24 ovh ml30 zan-col zan-col-13' url="/pages/minor/detail-zb-hk/detail-zb-hk?channelId={{item.channelId}}&data={{item.date}}&flag=0&kankeId={{item.kankeId}}"> -->
+              <navigator class='ptr  pt30 fs26 lh24 ovh ml30 zan-col zan-col-13' url="/pages/minor/detail-zb-hk/detail-zb-hk?channelId={{item.channelId}}&data={{item.date}}&flag=0&kankeId={{item.kankeId}}">
+                <view class='backbtn mb10 alic cff'>回看</view>
+                <view class='fs30 ellipsis'>{{item.channelName}}</view>
+                <view class='ellipsis c66 fs26 '>{{item.title}}</view>
+                <view class='ellipsis c66 fs26'>{{item.date}} {{item.startTime}}-{{item.endTime}}</view>
+              </navigator>
+              <!-- <play play_type='1' _channelId="{{item.channelId}}" _title="{{item.title}}" _channelName="{{item.channelName}}" _startTime="{{item.date+' '+item.startTime}}" _endTime="{{item.date+' '+item.endTime}}" _code="{{}}"> -->
+              <play play_type='0' _channelId="{{item.channelId}}" _title="{{item.title}}" _channelName="{{item.channelName}}" _startTime="{{item.date+' '+item.startTime}}" _endTime="{{item.date+' '+item.endTime}}" _code="{{}}" _assetId="{{item.code}}">
+
+                <view class='push-button alic fs26'>推屏</view>
+              </play>
+            </view>
+          </block>
+          <block wx:if='{{item.iflive==0}}'>
+            <view class='item wp100 pl20 pr20 pt20 pb20 bsz ptr ovh dflex fcenter '>
+              <view class='img zan-col zan-col-6'>
+                <navigator class='size-cover ptr bgr3 ovh ' url="/pages/minor/detail-zb/detail-zb?channelId={{item.channelId}}">
+                  <image class='wp100 hp100 pta l0 t0 ' src='{{item.image}}'></image>
+                </navigator>
+              </view>
+              <navigator class='ptr  pt30 fs26 lh24 ovh ml30 zan-col zan-col-13' url="/pages/minor/detail-zb/detail-zb?channelId={{item.channelId}}">
+                <view class='fs30  ellipsis'>{{item.channelName}}</view>
+                <view class='ellipsis c fs26'>正在直播：{{item.title}}</view>
+                <view class='ellipsis c66 fs26'>{{item.startTime}}-{{item.endTime}}</view>
+              </navigator>
+              <play play_type='1' _channelId="{{item.channelId}}">
+                <view class='push-button alic fs26'>推屏</view>
+              </play>
+            </view>
+          </block>
+        </view>
+
+        <view class='pb10' wx:if='{{item.videoType}}'>
+          <view class='item wp100 pl20 pr20 pt20 pb20 bsz ptr ovh dflex fcenter'>
+            <view class='img zan-col zan-col-9'>
+              <navigator class='size-cover ptr bgr3 ovh ' url="../minor/detail-db/detail-db?id={{item.id}}&columnType={{item.videoType}}">
+                <image class='wp100 hp100 pta l0 t0 ' src='{{item.image}}'></image>
+              </navigator>
+            </view>
+            <view class='ptr fs26 c99 lh24 ovh ml30 zan-col zan-col-12'>
+              <view class='fs30 ellipsis c'>{{item.title}}</view>
+              <view class='ellipsis'>
+                <block wx:for="{{item.tags}}" wx:for-index="idx" wx:for-item="v" wx:if="{{v}}">{{v}}·</block> {{item.year}}</view>
+              <view class='ellipsis'>导演：{{item.director}}</view>
+              <view class='ovh mb30' style='height:96rpx'>主演：{{item.actors}}</view>
+              <play wx:if="{{item.videoType!='tv'}}" play_type='2' _assetId="{{item.playCode}}" _providerId="{{item.cpCode}}" _id="{{item.id}}" _playNumber="{{item.programNumber?item.programNumber:'0'}}" _idForSave="{{item.id}}" _productId="{{item.productId}}">
+                <view class='push-button alic fs26'>推屏</view>
+              </play>
+              <navigator wx:if="{{item.videoType=='tv'}}" url="../minor/detail-db/detail-db?id={{item.id}}&columnType={{item.videoType}}">
+                <view class='push-button alic fs26'>推屏</view>
+              </navigator>
+            </view>
+          </view>
+        </view>
+      </block>
+      <view class='fs28 c33 alic wp100 mt70 pb20'>{{allloadtext}}</view>
+    </scroll-view>
+    <scroll-view class='panel list_zb wp100 ' scroll-y hidden='{{vodtype!=1}}' lower-threshold='100' bindscrolltolower='scrollLower'>
+      <view class='pb10'>
+        <view class='item wp100 pl20 pr20 pt20 pb20 bsz ptr ovh dflex fcenter ' wx:for='{{searchList}}'>
+          <view class='img zan-col zan-col-6'>
+            <navigator class='size-cover ptr bgr3 ovh ' url="/pages/minor/detail-zb/detail-zb?channelId={{item.channelId}}">
+              <image class='wp100 hp100 pta l0 t0 ' src='{{item.epgs[0].image}}'></image>
+            </navigator>
+          </view>
+          <navigator class='ptr  pt30 fs26 lh24 ovh ml30 zan-col zan-col-13' url="/pages/minor/detail-zb/detail-zb?channelId={{item.channelId}}">
+            <view class='fs30  ellipsis'>{{item.channelName}}</view>
+            <view class='ellipsis c fs26'>正在直播：{{item.epgs[0].title}}</view>
+            <view class='ellipsis c66 fs26'>{{item.epgs[0].startTime}}-{{item.epgs[0].endTime}}</view>
+          </navigator>
+          <play play_type='1' _channelId="{{item.channelId}}">
+            <view class='push-button alic fs26'>推屏</view>
+          </play>
+        </view>
+      </view>
+      <view class='fs28 c33 alic wp100 mt70 pb20'>{{loadtext}}</view>
+    </scroll-view>
+    <scroll-view class='panel list_zb wp100 ' scroll-y hidden='{{vodtype!=2}}' lower-threshold='100' bindscrolltolower='scrollLower'>
+      <block wx:for="{{searchList}}">
+        <view class='item wp100 pl20 pr20 pt20 pb20 bsz ptr ovh dflex fcenter ' wx:if="{{item.iflive==0}}">
+          <view class='img zan-col zan-col-6'>
+            <navigator class='size-cover ptr bgr3 ovh ' url="/pages/minor/detail-zb/detail-zb?channelId={{item.channelId}}">
+              <image class='wp100 hp100 pta l0 t0 ' src='{{item.image}}'></image>
+            </navigator>
+          </view>
+          <navigator class='ptr  pt30 fs26 lh24 ovh ml30 zan-col zan-col-13' url="/pages/minor/detail-zb/detail-zb?channelId={{item.channelId}}">
+            <view class='fs30  ellipsis'>{{item.channelName}}</view>
+            <view class='ellipsis c fs26'>正在直播：{{item.title}}</view>
+            <view class='ellipsis c66 fs26'>{{item.startTime}}-{{item.endTime}}</view>
+          </navigator>
+          <play play_type='1' _channelId="{{item.channelId}}">
+            <view class='push-button alic fs26'>推屏</view>
+          </play>
+        </view>
+
+        <view class='item wp100 pl20 pr20 pt20 pb20 bsz ptr ovh dflex fcenter ' wx:if="{{item.iflive==-1}}">
+          <view class='img zan-col zan-col-6'>
+            <!-- <navigator class='size-cover ptr bgr3 ovh ' url="/pages/minor/detail-zb-hk/detail-zb-hk?channelId={{item.channelId}}&data={{item.date}}&index=13&flag=0"> -->
+            <navigator class='size-cover ptr bgr3 ovh' url="/pages/minor/detail-zb-hk/detail-zb-hk?channelId={{item.channelId}}&data={{item.date}}&flag=0&kankeId={{item.kankeId}}">
+              <image class='wp100 hp100 pta l0 t0 ' src='{{item.image}}'></image>
+            </navigator>
+          </view>
+          <!-- <navigator class='ptr  pt30 fs26 lh24 ovh ml30 zan-col zan-col-13' url="/pages/minor/detail-zb-hk/detail-zb-hk?channelId={{item.channelId}}&data={{item.date}}&index=13&flag=0"> -->
+          <navigator class='ptr  pt30 fs26 lh24 ovh ml30 zan-col zan-col-13' url="/pages/minor/detail-zb-hk/detail-zb-hk?channelId={{item.channelId}}&data={{item.date}}&flag=0&kankeId={{item.kankeId}}">
+            <view class='backbtn mb10 alic cff'>回看</view>
+            <view class='fs30 ellipsis'>{{item.channelName}}</view>
+            <view class='ellipsis c66 fs26 '>{{item.title}}</view>
+            <view class='ellipsis c66 fs26'>{{item.date}} {{item.startTime}}-{{item.endTime}}</view>
+          </navigator>
+          <play play_type='0' _channelId="{{item.channelId}}" _title="{{item.title}}" _channelName="{{item.channelName}}" _startTime="{{item.date+' '+item.startTime}}" _endTime="{{item.date+' '+item.endTime}}" _code="{{}}" _assetId="{{item.code}}">
+            <view class='push-button alic fs26'>推屏</view>
+          </play>
+        </view>
+      </block>
+      <view class='fs28 c33 alic wp100 mt70 pb20'>{{loadtext}}</view>
+    </scroll-view>
+    <scroll-view class='liveresult list_zb ' scroll-y hidden="{{vodtype!=3}}">
+      <view class='pb10'>
+        <view class='item wp100 pl20 pr20 pt20 pb20 bsz ptr ovh dflex fcenter ' wx:for='{{searchList}}'>
+          <view class='img zan-col zan-col-9'>
+            <navigator class='size-cover ptr bgr3 ovh ' url="../minor/detail-db/detail-db?id={{item.id}}&columnType={{item.videoType}}">
+              <image class='wp100 hp100 pta l0 t0 ' src='{{item.image}}'></image>
+            </navigator>
+          </view>
+          <view class='ptr fs26 c99 lh24 ovh ml30 zan-col zan-col-12'>
+            <view class='fs30 ellipsis c'>{{item.title}}</view>
+            <view class='ellipsis'>
+              <block wx:for="{{item.tags}}" wx:for-index="idx" wx:for-item="v" wx:if="{{v}}">{{v}}·</block> {{item.year}}</view>
+            <view class='ellipsis'>导演：{{item.director}}</view>
+            <view class='ovh mb30' style='height:96rpx'>主演：{{item.actors}}</view>
+            <play wx:if="{{item.videoType!='tv'}}" play_type='2' _assetId="{{item.playCode}}" _providerId="{{item.cpCode}}" _id="{{item.id}}" _playNumber="{{item.programNumber?item.programNumber:'0'}}" _idForSave="{{item.id}}" _productId="{{item.productId}}">
+              <view class='push-button alic fs26'>推屏</view>
+            </play>
+            <navigator wx:if="{{item.videoType=='tv'}}" url="../minor/detail-db/detail-db?id={{item.id}}&columnType={{item.videoType}}">
+              <view class='push-button alic fs26'>推屏</view>
+            </navigator>
+          </view>
+        </view>
+      </view>
+      <view class='fs28 c33 alic wp100 mt70 pb20'>{{loadtext}}</view>
+    </scroll-view>
+  </view>
+</view>
+<template is="zan-dialog" data="{{ zanDialog }}"></template>

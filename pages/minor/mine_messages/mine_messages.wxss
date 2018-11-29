@@ -1,0 +1,28 @@
+page {
+  background: #f7f7f7;
+}
+.typeBox{position: fixed;display:flex;color:#000;height: 85rpx;width: 100%;justify-content:center;font-weight: bold;background: #fff}
+.typeBox .child{padding:30rpx 35rpx 22rpx 35rpx;height:32rpx;line-height:32rpx;}
+.typeBox .active{color:#ff510d;width:70rpx;}
+.typeBox .active:after{width:46rpx;height:4rpx;background:#ff510d;border-radius: 2rpx;content:'';display:inline-block;}
+
+.content-block{margin-top:130rpx;}
+.content-block .child{width:710rpx;height:310rpx;margin:0 auto;margin-top:40rpx}
+.content-block .child .time{display:block;width:177rpx;height:42rpx;border-radius:6rpx;background-color:rgb(222,222,222);font-size:20rpx;color:#fff;text-align:center;margin:0 auto;margin-bottom:32rpx;line-height:42rpx;}
+.content-block .child .check-box{width:112rpx;height:100%;line-height:5;margin-left:20rpx;margin-right:20rpx;}
+.content-block .child .area{width:710rpx;height:210rpx;display:flex}
+.content-block .child .cont{width:710rpx;height:235rpx;border-radius:20rpx;background-color:rgb(255,255,255)}
+.content-block .child .cont .lb{color:rgb(255,81,13);font-size:24rpx;}
+.content-block .child .cont .block1{height:12px;line-height:8px;padding:30rpx 0 30rpx 20rpx;width:85%;}
+.content-block .child .cont .block2{font-size:30rpx;margin:0 0 30rpx 20rpx;display:block;line-height:1.2;width:85%;}
+.content-block .child .cont .block3{border-top:1rpx solid #eee;width:98%;margin:0 auto}
+.content-block .child .cont .block3 image{width:8rpx;height:16rpx;float:right;margin:20rpx 10rpx;}
+
+/* 编辑和底部删除样式 */
+.list-top {height: 88rpx;line-height: 80rpx;background: #fafafa;position:fixed;width:100%;bottom:0;border-top:1rpx solid #eee;}
+.editline {position: fixed;width: 100%;background: #fafafa; border-top: 2rpx solid #e5e5e5;height: 88rpx;line-height: 88rpx;bottom: 0;}
+
+/* 无列表消息时样式 */
+.no-info-text{margin-top:492rpx}
+
+.icon-color{color: #ff5c5c}

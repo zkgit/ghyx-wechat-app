@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "热门回看",
+  "usingComponents": {
+    "play": "/component/play/play",
+    "nonetwork": "/component/nonetwork/nonetwork"
+  }
+}

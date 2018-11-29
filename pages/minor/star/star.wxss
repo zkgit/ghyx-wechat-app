@@ -1,0 +1,49 @@
+/* pages/minor/star/star.wxss */
+
+.user-head {
+  position: relative;
+  top: 0;
+  height: 276rpx;
+  width: 100%;
+}
+
+.user-head-bg {
+  height: 498rpx;
+  width: 100%;
+  filter: blur(14px);
+}
+
+.user-head-bg-box {
+  height: 276rpx;
+  width: 100%;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.user-head-info {
+  position: absolute;
+  top: 40rpx;
+  width: 100%;
+  text-align: center;
+}
+
+.user-head-info .to-login {
+  width: 9rpx;
+  height: 18rpx;
+  color: #000;
+  margin-left: 20rpx;
+}
+
+.user-head-logo {
+  height: 128rpx;
+  width: 128rpx;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  /* border: 1px solid #fff; */
+}
+
+.user-head-name {
+  text-align: center;
+  font-size: 34rpx;
+  /* color: #fff; */
+}

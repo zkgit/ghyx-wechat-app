@@ -1,0 +1,16 @@
+<import src="../../common/template.wxml" />
+<view class='resgister '>
+   <view class='ovh'>
+   <navigator url='../resgister/resgister' class='c fs28 fr '><view class='regArea'>注册</view></navigator>
+   </view>
+   <view class='reg_title c22'><image src='/image/reg/smile.png' mode='widthFix'></image><text>欢迎登录云飞视</text></view>
+   <view class='inputbox'>
+   <form bindsubmit='uselogin'>
+       <template is="regphone" data="{{_cachephone:cachephone,_phone:phone,_phoneblur:phoneblur}}" />
+       <template is="regpassword" data="{{_placeholder:'请输入您的密码',_showpwd:showpwd,_value:pwd.pwd1,_pwd:'pwd1'}}" />  
+        <button class='zan-btn cff regbtn mt70' formType="submit">登录</button>
+    </form>
+   </view>
+  
+   <navigator url='../resetpwd/resetpwd' class='c fs28 alic mt30'>忘记密码<view class='zan-icon zan-icon-arrow fs24 ml10'></view></navigator>
+</view>

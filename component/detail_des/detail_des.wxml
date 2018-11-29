@@ -1,0 +1,55 @@
+<import src="../../style/dist/capsule/index.wxml" />
+<view style='z-index:1'>
+  <view class='detail detail_db'>
+    <view class='df_bg' style='background:url({{_desc_data.image}}) no-repeat;background-position:center; background-size: 150% 150%;'></view>
+    <view class='detail_info'>
+      <view class='info_left'>
+        <view class='p_box'>
+          <image src="{{_desc_data.image}}" binderror='imgerror' class="wp100" mode='widthFix'></image>
+          <!-- <view class='zb_bs' wx:if="{{_zb_bs}}">
+            频道正在直播
+          </view> -->
+        </view>
+
+      </view>
+      <view class='info_right'>
+        <view class='title'>{{_desc_data.title}}</view>
+        <view class='tag'>
+          <text class='dsib' wx:for="{{_desc_data.tags}}" wx:if="{{item}}">{{item}}·</text> {{_desc_data.year}}
+        </view>
+        <view class='director'>
+          <text class=''>导演：{{_desc_data.directors}}</text>
+        </view>
+        <view class='actor'>
+          <text class=''>主演：{{_desc_data.actors}}</text>
+        </view>
+      </view>
+      <view class='btn_user'>
+        <view class='collect {{mystate.is_collect?"c":""}}' wx:if="{{!_zb_bs}}" bindtap='_collect'>
+          <image src='{{mystate.is_collect?"/image/collect_press.png":"/image/collect.png"}}' mode="	aspectFit"></image>
+          <text class='{{mystate.is_collect?"c":""}}'>{{mystate.is_collect?'已收藏':'收藏'}}</text>
+        </view>
+        <view class='share'>
+          <button open-type="share" hover-class="none">
+            <image src='{{is_share?"/image/share_press.png":"/image/share.png"}}' mode="aspectFit"></image>
+            <text class=''>{{is_share?'已分享':'分享'}}</text>
+          </button>
+        </view>
+      </view>
+      <view class='btn_price' wx:if="{{_db_price>0}}">
+        <template is="capsule" data="{{ leftText: '价格', rightText: '￥'+_db_price, color: '#f24544' }}" />
+      </view>
+    </view>
+  </view>
+
+  <view class='detail_tools'>
+    <view class=''>
+      <text class=''>简介：</text>{{is_shortdes?_desc_data.shortdes:_desc_data.description}}
+    </view>
+    <view class='changedes' bindtap='_changedes'>
+      <view class='triangle_border_down {{is_shortdes?"cts":"ct"}}'>
+        <view></view>
+      </view>
+    </view>
+  </view>
+</view>

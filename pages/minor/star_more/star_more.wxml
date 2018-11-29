@@ -1,0 +1,4 @@
+<import src="../../../common/template.wxml" />
+
+<template is="listMore" data="{{_list:list}}" />
+<template is="loadings" data="{{loading,loadtxt}}" />

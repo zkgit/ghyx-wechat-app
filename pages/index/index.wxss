@@ -1,0 +1,95 @@
+/**index.wxss**/
+image {
+  height: 400rpx;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+/*轮动海报  */
+
+.title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5px;
+  width: 100%;
+}
+
+.banner-scroll {
+  height:482rpx;background-color:#f4f4f4;
+  /* margin-top: 2px; */
+}
+
+.banner-scroll repeat {
+  margin-bottom: 10px;
+}
+
+.Bannerswiper {
+  height: 400rpx;background-color: #f4f4f4
+}
+/* .Bannerswiper .t{font-size: 28rpx;color: #222;line-height:1;margin:16rpx 0 0 20rpx;} */
+
+.pic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-image {
+  width: 100%;
+}
+
+.tab-bar {
+  position: fixed;
+  display: flex;
+  font-size: 30rpx;
+  border-bottom: 2rpx solid #e6e6e6;
+  background-color:#fff;
+  z-index: 999
+}
+
+.tab-bar .tab-active {
+  color: #ff510d;font-size:32rpx;
+  /* border-bottom:4rpx solid #ff510d */
+}
+.tab-bar .tab-active::after{width:46rpx;height:8rpx;font-size: 38rpx;background:#ff510d;border-radius: 2rpx;content:'';display:inline-block;}
+.tab-bar .tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.tab-bar .tab .t{
+  height: 60rpx;padding-top: 20rpx;font-weight:bold;line-height:34rpx;width:90rpx;text-align:center;
+}
+
+.change-tb-box{width:100%;height:290rpx;}
+.change-tb-box .child{width:25%;position:relative;float:left;height:145rpx;top:20rpx;display: inline-flex;}
+.change-tb-box .child image{position:absolute;width:88rpx;height:88rpx;left:52rpx}
+.change-tb-box .child text{position:absolute;width:100%;bottom:16rpx;text-align:center;font-size:28rpx;}
+
+/* .none-network{width:416rpx;height:230rpx;margin:424rpx auto;background-image:url("/image/bg_device_bind.png");background-size:100%;} */
+

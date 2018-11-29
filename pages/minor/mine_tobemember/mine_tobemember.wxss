@@ -1,0 +1,49 @@
+page {
+  background: #fff;
+}
+/* 头部信息栏 */
+.head-block{height: 172rpx;width: 96%;margin: 42rpx 0 0 19rpx;border-bottom: 1rpx solid rgb(238,238,238);display: flex}
+.head-block .img{width: 129rpx;height: 129rpx;border-radius: 50%;overflow:hidden}
+.head-block .cont{width: 80%;height: 129rpx;margin-left: 30rpx}
+.head-block .cont .t1{display: block;font-size: 34rpx;margin-top:25rpx;}
+.head-block .cont .t2{font-size: 30rpx;color: rgb(102,102,102);margin-top: 25rpx}
+
+
+.content-title{margin:50rpx 0 40rpx 23rpx;position: relative}
+.content-title .t1{font-size: 30rpx;color: rgb(51,51,51);font-weight:bold;}
+.content-title .t2{font-size: 24rpx;color: rgb(153,153,153);margin-right:10rpx;position: absolute;right: 39rpx;top:5rpx;}
+.content-title .img{width: 8rpx;height: 16rpx;position: absolute;right: 21rpx;top:15rpx;}
+
+.content-block{width: 708rpx;height: 412rpx;margin: 0 auto}
+.content-block .active{border:2rpx solid #ff510d !important;border-radius: 16rpx;background-color: #fff4f0}
+.content-block .child{width: 99%;height: 160rpx;border-radius: 16rpx;border: 2rpx solid rgb(240,240,240);display:flex;justify-content:space-between;margin-bottom: 42rpx}
+
+.content-block .lab-left{width:178rpx;height:32rpx;line-height:32rpx;top:-20rpx;left:-2rpx;font-size:22rpx;text-align:center;color:#fff;position:absolute;background-color:rgb(255,112,0);border-radius: 8rpx}
+.content-block .child .left{margin: 45rpx 23rpx}
+.content-block .child .left .t1{font-size: 30rpx;color: rgb(102,102,102)}
+.content-block .child .left .t2{font-size:24rpx;color: rgb(153,153,153)}
+.content-block .child .right{width: 200rpx;text-align: right;margin: 60rpx 30rpx 0 0}
+
+.order-button{width:710rpx;height:88rpx;margin:10rpx auto;background: linear-gradient(to right, rgb(231,199,129) , rgb(219,171,86));font-size:30rpx;text-align:center;color:rgb(109,79,23);line-height:3;border-radius: 6rpx}
+
+.toUse{display:flex;justify-content:space-between;margin:30rpx auto;width:200rpx;font-size:26rpx;color:rgb(153,153,153)}
+.toUse image{width:8rpx;height:16rpx;margin:10rpx 0 0 10rpx}
+
+.buttom-block{border-top:10rpx solid rgb(238,239,243)}
+.buttom-block .t1{font-size:26rpx;display:block;margin:30rpx 0 0 20rpx}
+.buttom-block .t2{font-size:24rpx;color:rgb(153,153,153);margin:18rpx auto;width:708rpx;display:block;}
+
+/* 底部遮罩 */
+/* .pop-block{height:552rpx;width:100%;background-color:#fff} */
+
+.pop-block{margin-bottom:60rpx;width:100%;background-color:#fff}
+.pop-block .title{height: 90rpx;width: 100%;border-bottom: 1rpx solid #f3f3f3}
+
+.pop-block .title .close{width:24rpx;height:24rpx;float:right;margin-right:48rpx;margin-top:30rpx;}
+.pop-block .title .close-block{width:80rpx;height:80rpx;float:right;}
+
+
+.pop-block .cont .t1{font-size: 26rpx;padding: 20rpx 30rpx 0 30rpx;display: block}
+.pop-block .cont .t2{font-size: 26rpx;padding: 0 30rpx 0 30rpx;display: block}
+
+.loadMore{position:fixed;margin-top:60%;width:100%;}

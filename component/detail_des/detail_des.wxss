@@ -1,0 +1,232 @@
+/* component/detail_des.wxss */
+
+@import "../../app.wxss" ;
+
+.c {
+  color: #ff510d !important;
+}
+
+.detail {
+  width: 100%;
+  height: 422rpx;
+  overflow: hidden;
+  position: relative;
+}
+
+.detail .df_bg {
+  filter: blur(20px);
+  width: 100%;
+  height: 422rpx;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.detail .detail_info {
+  height: 422rpx;
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.detail .info_left {
+  float: left;
+  padding: 35rpx 20rpx 0;
+  box-sizing: border-box;
+}
+
+.detail .info_left  .p_box {
+  position: relative;
+}
+
+.detail .info_left .zb_bs {
+  position: absolute;
+  bottom: 0rpx;
+  left: 0rpx;
+  height: 88rpx;
+  width: 260rpx;
+  font-size: 24rpx;
+  text-align: center;
+  color: #fff;
+  line-height: 130rpx;
+  border-radius: 8rpx;
+  background-image: linear-gradient(0deg, rgba(34, 34, 34, 0.6), rgba(34, 34, 34, 0));
+}
+
+.detail .info_left image {
+  width: 260rpx;
+  height: 348rpx;
+  border-radius: 8rpx;
+  position: relative;
+  vertical-align: top;
+}
+
+.detail .info_left text {
+  color: #fff;
+  margin: 0 auto;
+}
+
+.detail .info_right {
+  color: #fff;
+  width: 446rpx;
+  padding-top: 46rpx;
+  float: left;
+  font-size: 26rpx;
+}
+
+.detail .info_right view {
+  padding-bottom: 10rpx;
+}
+
+.detail .info_right .title {
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.detail .info_right .actor {
+  line-height: 44rpx;
+  height: 80rpx;
+  overflow: hidden;
+}
+
+.detail .info_right .director {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.detail .info_right .tag text {
+  padding: 0 2rpx;
+}
+
+.detail .detail_info .btn_user {
+  position: absolute;
+  width: 180rpx;
+  height: 88rpx;
+  left: 282rpx;
+  bottom: 48rpx;
+  display: flex;
+}
+
+.detail .detail_info .btn_user .collect {
+  flex: 1;
+  position: relative;
+}
+
+.detail .detail_info .btn_user .collect image {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -30%);
+}
+
+.detail .detail_info .btn_user .share image {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  left: 50%;
+  top: 29%;
+  transform: translate(-50%, -29%);
+}
+
+.detail .detail_info .btn_user  text {
+  font-size: 22rpx;
+  color: #fff;
+  display: block;
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 0;
+  width: 100%;
+}
+
+.detail .detail_info .btn_user .share {
+  flex: 1;
+  position: relative;
+}
+
+.detail .detail_info .btn_user .share button {
+  box-sizing: border-box;
+  padding: 0;
+  width: 60rpx;
+  height: 104rpx;
+  position: absolute;
+  left: 50%;
+  top: 29%;
+  transform: translate(-50%, -29%);
+}
+.detail .detail_info .btn_price {
+  position: absolute;
+  left: 500rpx;
+  bottom: 48rpx;
+}
+
+.detail_tools {
+  font-size: 24rpx;
+  color: #333;
+  padding: 30rpx 20rpx 0;
+  border-bottom: 20rpx solid #f3f3f3;
+  line-height: 36rpx;
+}
+
+.detail_tools .changedes {
+  width: 100%;
+  height: 69rpx;
+}
+
+.detail_tools .changedes .cts {
+  transform: rotate(0deg);
+  transition: all 150ms ease;
+}
+
+.detail_tools .changedes .ct {
+  transform: rotate(-180deg);
+  transition: all 150ms ease;
+}
+
+@keyframes spins {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(90deg);
+  }
+
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+.detail_tools .triangle_border_down {
+  width: 0;
+  height: 0;
+  border-width: 16rpx 16rpx 0;
+  border-style: solid;
+  border-color: #999 transparent transparent;
+  position: relative;
+  left: 50%;
+  top: 30rpx;
+}
+
+.detail_tools .triangle_border_down view {
+  display: block;
+  width: 0;
+  height: 0;
+  border-width: 14rpx 14rpx 0;
+  border-style: solid;
+  border-color: #fff transparent transparent;
+  position: absolute;
+  top: -20rpx;
+  left: -14rpx;
+}

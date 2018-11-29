@@ -1,0 +1,17 @@
+<import src="../../common/template.wxml" />
+<view class='resgister'>
+  <view class='ovh'>
+    <navigator url='../login/login' class='c fs28 fr login'>登录</navigator>
+  </view>
+  <view class='reg_title c22'>
+    <image src='/image/reg/smile.png' mode='widthFix'></image>
+    <text>快速重设您的密码</text>
+  </view>
+  <view class='inputbox'>
+    <template is="regphone" data="{{_cachephone:cachephone,_phone:phone,_phoneblur:phoneblur}}" />
+    <template is="regcode" data="{{_code:code,_codestate:codestate,_time:time}}" />
+    <template is="regpassword" data="{{_placeholder:'请设置密码(6-16位字母+数字)',_showpwd:showpwd,_value:pwd.pwd1,_pwd:'pwd1'}}" />
+    <template is="regpassword" data="{{_placeholder:'请确认密码',_showpwd:showpwd,_value:pwd.pwd2,_pwd:'pwd2'}}" />
+  </view>
+  <button class='zan-btn cff regbtn' bindtap='usereg'>完成</button>
+</view>

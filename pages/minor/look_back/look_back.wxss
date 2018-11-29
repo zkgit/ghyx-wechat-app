@@ -1,0 +1,4 @@
+.back-content .child{width:723rpx;height:275rpx;display:flex;margin:8rpx auto}
+.back-content .child image{width:180rpx;height:242rpx;margin:12rpx 0 0 12rpx}
+.back-content .child .cont{margin-left:30rpx;margin-top:72rpx;width:45%;}
+.push-button{background-color:#ff510d;color:#fff;width:132rpx;height:57rpx;font-size: 26rpx;border-radius:6rpx;position: absolute;right:20rpx;margin-top: 95rpx;line-height:57rpx;}

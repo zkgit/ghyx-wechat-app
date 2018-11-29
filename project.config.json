@@ -1,0 +1,85 @@
+{
+	"description": "项目配置文件。",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.3.2",
+	"appid": "wx5864daa73b080137",
+	"projectname": "%E6%AD%8C%E5%8D%8E%E6%9C%89%E7%BA%BF--%E6%AD%8C%E5%8D%8E%E7%BA%BF%E4%B8%8A",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 7,
+			"list": [
+				{
+					"id": -1,
+					"name": "点播",
+					"pathName": "pages/indexdb/indexdb",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "奇门遁甲",
+					"pathName": "pages/minor/detail-db/detail-db",
+					"query": "id=204&columnType=film"
+				},
+				{
+					"id": -1,
+					"name": "热血长安",
+					"pathName": "pages/minor/detail-db/detail-db",
+					"query": "id=4&columnType=tv"
+				},
+				{
+					"id": -1,
+					"name": "直播",
+					"pathName": "pages/minor/detail-zb/detail-zb",
+					"query": "channelId=620"
+				},
+				{
+					"id": -1,
+					"name": "铁笼",
+					"pathName": "pages/minor/detail-db/detail-db",
+					"query": "id=123&columnType=film"
+				},
+				{
+					"id": -1,
+					"name": "注册",
+					"pathName": "pages/resgister/resgister",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/mine/mine",
+					"query": ""
+				},
+				{
+					"id": 7,
+					"name": "回看",
+					"pathName": "pages/minor/detail-zb-hk/detail-zb-hk",
+					"query": "channelId=639&data=2018-10-11&kankeId=&flag=0"
+				}
+			]
+		}
+	}
+}

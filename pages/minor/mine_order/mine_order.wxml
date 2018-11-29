@@ -1,0 +1,71 @@
+<import src="../../../style/dist/loadmore/index.wxml" />
+<import src="../../../style/dist/tab/index.wxml" />
+<import src="../../../style/dist/dialog/index.wxml" />
+
+<nonetwork></nonetwork>
+
+<view class='zan-row list-top z9' wx:if="{{!noneList}}">
+  <view class="zan-col zan-col-6 zan-col-offset-10 fs30 alic z9" bindtap='deletefcn'>{{checkbable?'编辑':'编辑'}}</view>
+</view>
+
+<view class='null-list' wx:if="{{noneList}}">
+    <text class='t1'>暂无预约节目</text>
+    <text class='t2'>开启观影，预约您想看的节目吧！</text>
+  </view>
+<view class='list' wx:if="{{!noneList}}">
+  <view class='zan-row listbox mt20' wx:for='{{lists}}' wx:key="{{index}}">
+    <view class='zan-col zan-col-4 alic cf5c' wx:if="{{checkbable}}" bindtap="checkboxChange" data-index="{{index}}">
+      <view class="zan-icon alic {{item.ischeck?'zan-icon-checked':'zan-icon-check'}}"></view>
+    </view>
+    <view class="img-box zan-col zan-col-6 alic">
+      <navigator url="../detail-zb/detail-zb?channelId={{item.channelId}}">
+        <image src="{{item.image}}" mode="widthFix" class="img" />
+      </navigator>
+    </view>
+    <!-- 1;//预约节目正在播出
+        10;//预约时间相差10分钟以内
+        0;//预约节目播放结束
+        -1;//预约时间相差10分钟以上 -->
+    <view class="zan-col zan-col-13 zan-col-offset-1 " style='margin-left:30rpx;height:216rpx'>
+      <view class="fs32 ellipsis pt36">{{item.title}}</view>
+      <view class='psr cont-block' style=''  wx:if='{{item.status==1}}'>
+        <view class="fs26 ellipsis cf5 pt20 psa lh1">正在播放</view>
+        <play play_type='1' _channelId="{{item.channelId}}">
+          <button class="fs26 push-button">推屏</button>
+        </play>
+      </view>
+      <view class='psr cont-block' style='' wx:if='{{item.status==10}}'>
+        <view class="fs26 ellipsis cf5 pt20 psa lh1" >即将播放：{{item.dataInfo}} {{item.startTime}}</view>
+        <play play_type='1' _channelId="{{item.channelId}}">
+          <button class="fs26 push-button">推屏</button>
+        </play>
+      </view>
+      <view class='psr cont-block' style='' wx:if='{{item.status==-1}}'>
+        <view class="fs26 ellipsis c33 pt20 psa lh1" >播出时间：{{item.dataInfo}} {{item.startTime}}</view>
+        <!-- <play play_type='1' _channelId="{{item.channelId}}"> -->
+          <button class="fs26 no-push-button">推屏</button>
+        <!-- </play> -->
+      </view>
+      <view class='psr cont-block' style='' wx:if='{{item.status==0}}'>
+        <view class="fs26 ellipsis c66 pt20 psa lh1">已结束</view>
+        <!-- <play play_type='1' _channelId="{{item.channelId}}"> -->
+          <button class="fs26 no-push-button">推屏</button>
+        <!-- </play> -->
+      </view>
+      <text class='fs26 rgb153 pt20 ellipsis'>预约过期时间：{{item.dateStr}}</text>
+    </view>
+  </view>
+</view>
+
+
+<view class='editline z10' wx:if='{{checkbable}}'>
+  <view class='zan-row'>
+    <view class="zan-col zan-col-8 fs30 alic" bindtap='cancel'>取消</view>
+    <view class="zan-col zan-col-8 fs30 alic" bindtap='allcheck'>{{isallcheck?'取消全选':'全选'}}</view>
+    <view class="zan-col zan-col-8 fs30 alic icon-color" bindtap='deleteButton'>删除{{deleteNum>0?'('+deleteNum+')':''}}</view>
+  </view>
+</view>
+
+<template is="zan-dialog" data="{{ zanDialog }}"></template>
+<!-- <template is="zan-loadmore" data="{{ nodata}}" /> -->
+<template is="zan-loadmore" data="{{ loading}}"></template>

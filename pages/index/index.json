@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "partremote": "/component/partremote/partremote",
+    "searchRank": "/component/search/search",
+    "nonetwork": "/component/nonetwork/nonetwork"
+  }
+}
